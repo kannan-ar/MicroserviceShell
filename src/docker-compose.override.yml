@@ -1,0 +1,34 @@
+version: '3.4'
+
+services:
+
+  identity.data:
+    container_name: identity.data
+    environment:
+      - SA_PASSWORD=P@ssword1
+      - ACCEPT_EULA=Y
+    ports:
+      - "1433:1433"
+    volumes:
+      - identity_data:/var/opt/mssql
+
+  identity.api:
+    container_name: identity.api
+    environment:
+      - ASPNETCORE_ENVIRONMENT=Development
+      - ConnectionString=Server=identity.data;Database=IdentityDb;User Id=sa;Password=P@ssword1
+    ports:
+      - "8001:80"
+
+  portainer:
+    container_name: portainer
+    restart: always
+    ports:
+      - "8080:8000"
+      - "9000:9000"
+    volumes:
+      - /var/run/docker.sock:/var/run/docker.sock
+      - portainer_data:/data
+
+
+  

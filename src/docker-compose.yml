@@ -1,0 +1,22 @@
+version: '3.4'
+
+services:
+
+  identity.data:
+    image: mcr.microsoft.com/mssql/server:2019-latest
+
+  identity.api:
+    image: ${DOCKER_REGISTRY-}identityapi
+    build:
+      context: .
+      dockerfile: Services/Identity/Identity.API/Dockerfile
+    depends_on:
+      - identity.data
+
+  portainer:
+    image: portainer/portainer-ce
+
+
+volumes:
+  identity_data:
+  portainer_data:
