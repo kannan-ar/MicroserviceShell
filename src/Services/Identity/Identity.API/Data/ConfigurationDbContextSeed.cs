@@ -18,15 +18,15 @@ namespace Identity.API.Data
 
             if(!context.ApiScopes.Any())
             {
-                context.ApiScopes.Add(new ApiScope("microfrontend", "Microfrontend API").ToEntity());
+                context.ApiScopes.Add(new ApiScope("mfscope", "Microfrontend API").ToEntity());
                 await context.SaveChangesAsync();
             }
 
             if (!context.ApiResources.Any())
             {
-                context.ApiResources.Add(new ApiResource("microfrontend", "Microfrontend API")
+                context.ApiResources.Add(new ApiResource("mfapiresource", "Microfrontend API")
                 {
-                    Scopes = { "microfrontend" }
+                    Scopes = { "mfscope" }
                 }.ToEntity());
                 
                 await context.SaveChangesAsync();

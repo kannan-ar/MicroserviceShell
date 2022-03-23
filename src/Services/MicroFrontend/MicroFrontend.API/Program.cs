@@ -15,8 +15,8 @@ if (app.Environment.IsDevelopment())
     app.UseSwagger();
     app.UseSwaggerUI(setup =>
     {
-        setup.OAuthClientId("mfswaggerui8");
-        setup.OAuthAppName("M Swagger UI8");
+        setup.OAuthClientId("mfswaggerui");
+        setup.OAuthAppName("Swagger UI for Microfrontend");
     });
 }
 

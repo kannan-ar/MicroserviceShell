@@ -26,7 +26,7 @@ namespace MicroFrontend.API.Filters
             {
                 new OpenApiSecurityRequirement
                 {
-                    [ oAuthScheme ] = new [] { "microservice" }
+                    [ oAuthScheme ] = new [] { "mfapiresource" }
                 }
             };
         }

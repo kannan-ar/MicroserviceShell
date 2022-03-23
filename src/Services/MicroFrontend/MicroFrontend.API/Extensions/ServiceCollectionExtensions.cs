@@ -21,7 +21,7 @@ namespace MicroFrontend.API.Extensions
             {
                 options.Authority = identityUrl;
                 options.RequireHttpsMetadata = false;
-                options.Audience = "microfrontend";
+                options.Audience = configuration.GetValue<string>("IdentityAudience");
             });
         }
 
@@ -48,7 +48,7 @@ namespace MicroFrontend.API.Extensions
                             TokenUrl = new Uri($"{configuration.GetValue<string>("IdentityUrlExternal")}/connect/token"),
                             Scopes = new Dictionary<string, string>()
                             {
-                                { "microfrontend", "Microfrontend API" }
+                                { "mfscope", "Microfrontend API" }
                             }
                         }
                     }
