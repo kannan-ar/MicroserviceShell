@@ -1,6 +1,7 @@
 ﻿using Identity.API.Models;
+using Identity.API.Repositories;
+using Identity.API.Services;
 using Microsoft.AspNetCore.DataProtection;
-using Microsoft.EntityFrameworkCore;
 using Microsoft.OpenApi.Models;
 using StackExchange.Redis;
 
@@ -51,6 +52,17 @@ namespace Identity.API.Extensions
                     Version = "v1"
                 });
             });
+        }
+
+        public static void RegisterRepositories(this IServiceCollection services)
+        {
+            services.AddScoped<IClientRepository, ClientRepository>();
+        }
+
+        public static void RegisterServices(this IServiceCollection services)
+        {
+            services.AddScoped<IClientService, ClientService>();
+            services.AddTransient<ILoginService<ApplicationUser>, EFLoginService>();
         }
     }
 }

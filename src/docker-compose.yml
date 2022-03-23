@@ -11,7 +11,18 @@ services:
       context: .
       dockerfile: Services/Identity/Identity.API/Dockerfile
     depends_on:
-      - identity.data
+      - identity.data 
+
+  microfrontend.api:
+    image: ${DOCKER_REGISTRY-}microfrontendapi
+    build:
+      context: .
+      dockerfile: Services/MicroFrontend/MicroFrontend.API/Dockerfile
+    depends_on:
+      - microfrontend.data
+
+  microfrontend.data:
+    image: mongo
 
   portainer:
     image: portainer/portainer-ce
@@ -20,3 +31,4 @@ services:
 volumes:
   identity_data:
   portainer_data:
+  microfrontend_data:

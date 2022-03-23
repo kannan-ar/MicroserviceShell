@@ -1,0 +1,54 @@
+﻿@model Identity.API.Models.ClientViewModels.RegisterViewModel
+
+<div class="container">
+    <form asp-controller="Client" asp-action="Register" method="post" class="form-horizontal">
+        <h4>Create New Client</h4>
+        <div asp-validation-summary="All" class="text-danger"></div>
+        <div class="row">
+            <div class="form-group col-sm-6">
+                <label asp-for="ClientId" class="control-label form-label">Client ID</label>
+                <input asp-for="ClientId" class="form-control form-input" />
+                <span asp-validation-for="ClientId" class="text-danger" />
+            </div>
+        </div>
+        <div class="row">
+            <div class="form-group col-sm-6">
+                <label asp-for="ClientName" class="control-label form-label">Client Name</label>
+                <input asp-for="ClientName" class="form-control form-input" />
+                <span asp-validation-for="ClientName" class="text-danger" />
+            </div>
+        </div>
+        <div class="row">
+            <div class="form-group col-sm-6">
+                <label asp-for="AllowedGrantType" class="control-label form-label">Client Type</label>
+                <input asp-for="AllowedGrantType" class="form-control form-input" />
+                <span asp-validation-for="AllowedGrantType" class="text-danger" />
+            </div>
+        </div>
+        <div class="row">
+            <div class="form-group col-sm-6">
+                <label asp-for="RedirectUri" class="control-label form-label">Redirect Uri</label>
+                <input asp-for="RedirectUri" class="form-control form-input" />
+                <span asp-validation-for="RedirectUri" class="text-danger" />
+            </div>
+        </div>
+        <div class="row">
+            <div class="form-group col-sm-6">
+                <label asp-for="PostLogoutRedirectUri" class="control-label form-label">Post Logout Redirect Uri</label>
+                <input asp-for="PostLogoutRedirectUri" class="form-control form-input" />
+                <span asp-validation-for="PostLogoutRedirectUri" class="text-danger" />
+            </div>
+        </div>
+        <div class="row">
+            <div class="form-group col-sm-6">
+                <label asp-for="AllowedScopesString" class="control-label form-label">AllowedScopes</label>
+                <input asp-for="AllowedScopesString" class="form-control form-input" />
+                <span asp-validation-for="AllowedScopesString" class="text-danger" />
+            </div>
+        </div>
+        <br /><br />
+        <div class="form-group">
+            <button type="submit" class="btn btn-default btn-brand">&nbsp;Register&nbsp;</button>
+        </div>
+    </form>
+</div>

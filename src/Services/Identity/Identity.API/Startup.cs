@@ -1,5 +1,6 @@
 ﻿using Identity.API.Data;
 using Identity.API.Extensions;
+using Identity.API.Mapping;
 using Identity.API.Models;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
@@ -40,9 +41,14 @@ namespace Identity.API
 
             services.AddDataProtectionBasedOnConfiguration(Configuration);
 
+            services.AddAutoMapper(typeof(ClientProfile));
+            services.RegisterRepositories();
+            services.RegisterServices();
+
+
             services.AddIdentityServer(x =>
             {
-                x.IssuerUri = Configuration.GetValue<string>("IssuerUri");
+                x.IssuerUri = "null";// Configuration.GetValue<string>("IssuerUri");
                 x.Authentication.CookieLifetime = TimeSpan.FromMinutes(30);
             })
              .AddSigningCredentialBasedOnEnviornment(_env)
@@ -83,7 +89,9 @@ namespace Identity.API
             }
 
             app.UseStaticFiles();
+
             app.UseForwardedHeaders();
+            app.UseCookiePolicy(new CookiePolicyOptions { MinimumSameSitePolicy = SameSiteMode.Lax });
             app.UseIdentityServer();
             app.UseRouting();
 

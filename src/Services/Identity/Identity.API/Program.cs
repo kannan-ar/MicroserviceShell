@@ -1,4 +1,7 @@
 using Identity.API;
+using Identity.API.Data;
+using Identity.API.Extensions;
+using IdentityServer4.EntityFramework.DbContexts;
 using Microsoft.AspNetCore;
 
 var configuration = GetConfiguration();
@@ -6,6 +9,14 @@ var configuration = GetConfiguration();
 try
 {
     var host = BuildWebHost(configuration, args);
+
+    host.MigrateDbContext<PersistedGrantDbContext>((_, __) => { })
+        .MigrateDbContext<ApplicationDbContext>((_, __) => { })
+        .MigrateDbContext<ConfigurationDbContext>((context, services) =>
+        {
+            new ConfigurationDbContextSeed().SeedAsync(context).Wait();
+        });
+
     host.Run();
     return 0;
 }
