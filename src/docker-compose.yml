@@ -24,9 +24,16 @@ services:
   microfrontend.data:
     image: mongo
 
+  shell.app:
+    image: ${DOCKER_REGISTRY-}shellapp
+    build:
+      context: .
+      dockerfile: WebApps/ShellApp/Dockerfile
+    depends_on:
+      - microfrontend.api
+
   portainer:
     image: portainer/portainer-ce
-
 
 volumes:
   identity_data:

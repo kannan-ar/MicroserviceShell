@@ -5,8 +5,8 @@
     <DockerTargetOS>Linux</DockerTargetOS>
     <ProjectGuid>9fb5334f-7750-49a2-a907-9e6faedf2ca9</ProjectGuid>
     <DockerLaunchAction>LaunchBrowser</DockerLaunchAction>
-    <DockerServiceUrl>{Scheme}://localhost:{ServicePort}</DockerServiceUrl>
-    <DockerServiceName>identity.api</DockerServiceName>
+    <DockerServiceUrl>http://host.docker.internal:8003/</DockerServiceUrl>
+    <DockerServiceName>shell.app</DockerServiceName>
     <DockerComposeProjectName>src</DockerComposeProjectName>
   </PropertyGroup>
   <ItemGroup>

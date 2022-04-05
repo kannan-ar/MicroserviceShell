@@ -16,7 +16,6 @@ services:
     container_name: identity.api
     environment:
       - ASPNETCORE_ENVIRONMENT=Development
-      - ASPNETCORE_URLS=http://0.0.0.0:80
       - ConnectionString=Server=identity.data;Database=IdentityDb;User Id=sa;Password=P@ssword1
       - OrchestratorType=${ORCHESTRATOR_TYPE}
     ports:
@@ -26,14 +25,11 @@ services:
     container_name: microfrontend.api
     environment:
       - ASPNETCORE_ENVIRONMENT=Development
-      - ASPNETCORE_URLS=http://0.0.0.0:80
       - IdentityUrlExternal=http://${SHELL_EXTERNAL_DNS_NAME_OR_IP}:8001
       - ConnectionString=mongodb://microfrontend.data:27017
       - IdentityUrl=http://identity.api
       - IdentityAudience=mfapiresource
       - OrchestratorType=${ORCHESTRATOR_TYPE}
-    depends_on:
-      - microfrontend.data
     ports:
       - "8002:80"
   
@@ -43,6 +39,13 @@ services:
       - "27017:27017"
     volumes:
       - microfrontend_data:/data/db 
+
+  shell.app:
+    container_name: shell.app
+    environment:
+      - ASPNETCORE_ENVIRONMENT=Development
+    ports:
+      - "8003:80" 
 
   portainer:
     container_name: portainer
