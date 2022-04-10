@@ -1,14 +1,34 @@
-var builder = WebApplication.CreateBuilder(args);
+using Microsoft.AspNetCore;
+using ShellApp;
 
-builder.Services.AddControllersWithViews();
+var configuration = GetConfiguration();
 
-var app = builder.Build();
+try
+{
+    var host = BuildWebHost(configuration, args);
+    host.Run();
 
-app.UseStaticFiles();
+    return 0;
+}
+catch
+{
+    return 1;
+}
 
-app.UseRouting();
-app.MapControllerRoute(
-    name: "default",
-    pattern: "{controller=Shell}/{action=Index}/{id?}");
+IWebHost BuildWebHost(IConfiguration configuration, string[] args) =>
+    WebHost.CreateDefaultBuilder(args)
+    .CaptureStartupErrors(false)
+    .ConfigureAppConfiguration(x => x.AddConfiguration(configuration))
+    .UseStartup<Startup>()
+    .UseContentRoot(Directory.GetCurrentDirectory())
+    .Build();
 
-app.Run();
+IConfiguration GetConfiguration()
+{
+    var builder = new ConfigurationBuilder()
+        .SetBasePath(Directory.GetCurrentDirectory())
+        .AddJsonFile("appsettings.json", optional: false, reloadOnChange: true)
+        .AddEnvironmentVariables();
+
+    return builder.Build();
+}
