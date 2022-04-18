@@ -17,5 +17,15 @@ namespace Identity.API.Services
             client.AllowAccessTokensViaBrowser = true;
             await repository.AddClient(client);
         }
+
+        public async Task Delete(string clientId)
+        {
+            await repository.Delete(clientId);
+        }
+
+        public async Task<List<Client>> GetClients()
+        {
+            return await repository.GetAllClients();
+        }
     }
 }

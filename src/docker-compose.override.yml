@@ -44,6 +44,7 @@ services:
     container_name: shell.app
     environment:
       - ASPNETCORE_ENVIRONMENT=Development
+      - IdentityUrl=http://${SHELL_EXTERNAL_DNS_NAME_OR_IP}:8001
     ports:
       - "8003:80" 
 
@@ -57,5 +58,23 @@ services:
       - /var/run/docker.sock:/var/run/docker.sock
       - portainer_data:/data
 
-
+  elasticsearch:
+    container_name: elasticsearch
+    environment:
+      - xpack.monitoring.enabled=true
+      - xpack.watcher.enabled=false
+      - "ES_JAVA_OPTS=-Xms512m -Xmx512m"
+      - discovery.type=single-node
+    ports:
+      - "9200:9200"
+    volumes:
+      - elasticsearch-data:/usr/share/elasticsearch/data
   
+  kibana:
+    container_name: kibana
+    environment:
+      - ELASTICSEARCH_URL=http://localhost:9200
+    depends_on:
+      - elasticsearch
+    ports:
+      - "5601:5601" 

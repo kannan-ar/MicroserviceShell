@@ -35,6 +35,9 @@ namespace Identity.API.Models.ClientViewModels
         }
 
         [IgnoreMap]
+        public string ClientSecret { get; set; }
+
+        [IgnoreMap]
         public ICollection<string> PostLogoutRedirectUris
         {
             get

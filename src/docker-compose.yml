@@ -35,7 +35,14 @@ services:
   portainer:
     image: portainer/portainer-ce
 
+  elasticsearch:
+    image: docker.elastic.co/elasticsearch/elasticsearch:7.9.2
+
+  kibana:
+    image: docker.elastic.co/kibana/kibana:7.9.2
+
 volumes:
   identity_data:
   portainer_data:
   microfrontend_data:
+  elasticsearch-data:

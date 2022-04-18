@@ -1,4 +1,5 @@
-﻿using Microsoft.AspNetCore.Mvc;
+﻿using Microsoft.AspNetCore.Authorization;
+using Microsoft.AspNetCore.Mvc;
 
 namespace ShellApp.Controllers
 {
@@ -9,12 +10,14 @@ namespace ShellApp.Controllers
             return View();
         }
 
+        [Authorize]
         [Route("Links")]
         public IActionResult Links()
         {
             return View();
         }
 
+        [Authorize]
         [HttpPost("Links")]
         [ValidateAntiForgeryToken]
         public IActionResult Links(string links)

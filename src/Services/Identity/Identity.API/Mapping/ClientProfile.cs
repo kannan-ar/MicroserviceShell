@@ -9,6 +9,7 @@ namespace Identity.API.Mapping
         public ClientProfile()
         {
             CreateMap<RegisterViewModel, Client>();
+            CreateMap<Client, ClientViewModel>();
         }
     }
 }

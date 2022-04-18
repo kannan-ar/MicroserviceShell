@@ -20,6 +20,13 @@
         </div>
         <div class="row">
             <div class="form-group col-sm-6">
+                <label asp-for="ClientSecret" class="control-label form-label">Client Secret</label>
+                <input asp-for="ClientSecret" class="form-control form-input" />
+                <span asp-validation-for="ClientName" class="text-danger" />
+            </div>
+        </div>
+        <div class="row">
+            <div class="form-group col-sm-6">
                 <label asp-for="AllowedGrantType" class="control-label form-label">Client Type</label>
                 <input asp-for="AllowedGrantType" class="form-control form-input" />
                 <span asp-validation-for="AllowedGrantType" class="text-danger" />

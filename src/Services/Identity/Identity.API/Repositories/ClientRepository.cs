@@ -1,7 +1,7 @@
 ﻿using IdentityServer4.EntityFramework.DbContexts;
-using IdentityServer4.EntityFramework.Interfaces;
 using IdentityServer4.EntityFramework.Mappers;
 using IdentityServer4.Models;
+using Microsoft.EntityFrameworkCore;
 
 namespace Identity.API.Repositories
 {
@@ -18,6 +18,23 @@ namespace Identity.API.Repositories
         {
             context.Clients.Add(client.ToEntity());
             await context.SaveChangesAsync();
+        }
+
+        public async Task Delete(string clientId)
+        {
+            var client = context.Clients.FirstOrDefault(x => x.ClientId == clientId);
+
+            if(client != null)
+            {
+                context.Clients.Remove(client);
+                await context.SaveChangesAsync();
+            }
+        }
+
+        public async Task<List<Client>> GetAllClients()
+        {
+            var clients = await context.Clients.Include(x => x.RedirectUris).Include(x => x.PostLogoutRedirectUris).ToListAsync();
+            return clients.Select(x => x.ToModel()).ToList();
         }
     }
 }

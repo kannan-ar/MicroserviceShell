@@ -17,10 +17,22 @@ namespace Identity.API.Controllers
             this.service = service;
         }
 
+        public async Task<ActionResult<List<ClientViewModel>>> Index()
+        {
+            var clients = await service.GetClients();
+            return View(mapper.Map<List<ClientViewModel>>(clients));
+        }
+
         [HttpGet]
         public IActionResult Register()
         {
             return View();
+        }
+
+        public async Task<IActionResult> Delete(string id)
+        {
+            await service.Delete(id);
+            return RedirectToAction(nameof(Index));
         }
 
         [HttpPost]
@@ -29,9 +41,14 @@ namespace Identity.API.Controllers
         {
             var item = mapper.Map<Client>(model);
 
+            item.ClientSecrets = new List<Secret>
+            {
+                new Secret(model.ClientSecret.Sha256())
+            };
+
             await service.AddClient(item);
 
-            return Content("Client created successfully");
+            return RedirectToAction(nameof(Index));
         }
     }
 }
