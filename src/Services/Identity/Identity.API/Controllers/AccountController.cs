@@ -16,6 +16,7 @@ namespace Identity.API.Controllers
         private readonly ILoginService<ApplicationUser> _loginService;
         private readonly IConfiguration _configuration;
         private readonly IClientStore _clientStore;
+        private readonly ILogger<AccountController> _logger;
         private readonly IIdentityServerInteractionService _interaction;
 
         public AccountController(
@@ -23,6 +24,7 @@ namespace Identity.API.Controllers
             IIdentityServerInteractionService interaction,
             IConfiguration configuration,
             IClientStore clientStore,
+            ILogger<AccountController> logger,
             UserManager<ApplicationUser> userManager)
         {
             _userManager = userManager;
@@ -30,6 +32,7 @@ namespace Identity.API.Controllers
             _loginService = loginService;
             _configuration = configuration;
             _clientStore = clientStore;
+            _logger = logger;
         }
 
         [HttpGet]
@@ -147,6 +150,19 @@ namespace Identity.API.Controllers
             }
 
             return Content("User created successfully");
+        }
+
+        public async Task<IActionResult> Error(string errorId)
+        {
+            var message = await _interaction.GetErrorContextAsync(errorId);
+
+            _logger.LogInformation("{ExceptionType}, Message: {message}, Description: {description}, RedirectUri: {redirecturi}", 
+                "Auth", message.Error, message.ErrorDescription, message.RedirectUri);
+
+            return View("Error", new ErrorViewModel
+            {
+                Error = message
+            });
         }
     }
 }

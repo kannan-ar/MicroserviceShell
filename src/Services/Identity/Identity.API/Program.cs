@@ -31,6 +31,7 @@ IWebHost BuildWebHost(IConfiguration configuration, string[] args) =>
     .ConfigureAppConfiguration(x => x.AddConfiguration(configuration))
     .UseStartup<Startup>()
     .UseContentRoot(Directory.GetCurrentDirectory())
+    .ConfigureSerilog()
     .Build();
 
 IConfiguration GetConfiguration()

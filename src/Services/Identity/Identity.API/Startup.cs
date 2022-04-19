@@ -45,11 +45,11 @@ namespace Identity.API
             services.RegisterRepositories();
             services.RegisterServices();
 
-
             services.AddIdentityServer(x =>
             {
-                x.IssuerUri = "null";// Configuration.GetValue<string>("IssuerUri");
+                x.IssuerUri = Configuration.GetValue<string>("IssuerUri");
                 x.Authentication.CookieLifetime = TimeSpan.FromMinutes(30);
+                x.UserInteraction.ErrorUrl = "/Account/Error";
             })
              .AddSigningCredentialBasedOnEnviornment(_env)
              .AddAspNetIdentity<ApplicationUser>()

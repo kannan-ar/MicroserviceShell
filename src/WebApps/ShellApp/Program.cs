@@ -1,10 +1,8 @@
 using Microsoft.AspNetCore;
-using Serilog;
-using Serilog.Sinks.Elasticsearch;
 using ShellApp;
+using ShellApp.Extensions;
 
 var configuration = GetConfiguration();
-
 
 try
 {
@@ -23,18 +21,8 @@ IWebHost BuildWebHost(IConfiguration configuration, string[] args) =>
         .CaptureStartupErrors(false)
         .ConfigureAppConfiguration(x => x.AddConfiguration(configuration))
         .UseStartup<Startup>()
-        .UseSerilog((context, configuration) =>
-        {
-            configuration
-                .Enrich.FromLogContext()
-                .Enrich.WithMachineName()
-                .WriteTo.Console()
-                .WriteTo.Elasticsearch(
-                    new ElasticsearchSinkOptions(new Uri(context.Configuration["ElasticConfiguration:Uri"])));
-        })
+        .ConfigureSerilog()
         .Build();
-
-
 
 IConfiguration GetConfiguration()
 {
