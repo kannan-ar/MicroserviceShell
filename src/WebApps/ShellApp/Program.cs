@@ -1,6 +1,6 @@
+using Common.Logging;
 using Microsoft.AspNetCore;
 using ShellApp;
-using ShellApp.Extensions;
 
 var configuration = GetConfiguration();
 
@@ -10,19 +10,19 @@ try
     host.Run();
     return 0;
 }
-catch (Exception ex)
+catch
 {
     return 1;
 }
 
-
 IWebHost BuildWebHost(IConfiguration configuration, string[] args) =>
     WebHost.CreateDefaultBuilder(args)
-        .CaptureStartupErrors(false)
-        .ConfigureAppConfiguration(x => x.AddConfiguration(configuration))
-        .UseStartup<Startup>()
-        .ConfigureSerilog()
-        .Build();
+    .CaptureStartupErrors(false)
+    .ConfigureAppConfiguration(x => x.AddConfiguration(configuration))
+    .UseStartup<Startup>()
+    .UseContentRoot(Directory.GetCurrentDirectory())
+    .ConfigureSerilog()
+    .Build();
 
 IConfiguration GetConfiguration()
 {

@@ -31,6 +31,7 @@ services:
       dockerfile: WebApps/ShellApp/Dockerfile
     depends_on:
       - microfrontend.api
+      - elasticsearch
 
   portainer:
     image: portainer/portainer-ce

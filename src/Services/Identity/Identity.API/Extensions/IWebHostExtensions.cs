@@ -74,28 +74,5 @@ namespace Identity.API.Extensions
             context.Database.Migrate();
             seeder(context, services);
         }
-
-        public static IWebHostBuilder ConfigureSerilog(this IWebHostBuilder webHostBuilder)
-        {
-            webHostBuilder.UseSerilog((context, configuration) =>
-            {
-                configuration
-                    .Enrich.FromLogContext()
-                    .Enrich.WithMachineName()
-                    .WriteTo.Console()
-                    .WriteTo.Elasticsearch(
-                        new ElasticsearchSinkOptions(new Uri(context.Configuration["ElasticConfiguration:Uri"]))
-                        {
-                            IndexFormat = $"applogs-{Assembly.GetExecutingAssembly().GetName().Name.ToLower().Replace(".", "-")}-{context.HostingEnvironment.EnvironmentName?.Replace(".", "-")}-logs-{DateTime.UtcNow:yyyy-MM}",
-                            AutoRegisterTemplate = true,
-                            NumberOfShards = Convert.ToInt32(context.Configuration["ElasticConfiguration:NumberOfShards"]),
-                            NumberOfReplicas = Convert.ToInt32(context.Configuration["ElasticConfiguration:NumberOfReplicas"])
-                        })
-                    .Enrich.WithProperty("Environment", context.HostingEnvironment.EnvironmentName)
-                    .ReadFrom.Configuration(context.Configuration);
-            });
-
-            return webHostBuilder;
-        }
     }
 }

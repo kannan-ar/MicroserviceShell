@@ -123,7 +123,7 @@ namespace Identity.API.Controllers
         [HttpGet]
         public IActionResult Register()
         {
-            return View();  
+            return View();
         }
 
         [HttpPost]
@@ -139,9 +139,9 @@ namespace Identity.API.Controllers
 
             var result = await _userManager.CreateAsync(user, model.Password);
 
-            if(result.Errors.Count() > 0)
+            if (result.Errors.Count() > 0)
             {
-                foreach(var error in result.Errors)
+                foreach (var error in result.Errors)
                 {
                     ModelState.AddModelError(String.Empty, error.Description);
                 }
@@ -156,8 +156,8 @@ namespace Identity.API.Controllers
         {
             var message = await _interaction.GetErrorContextAsync(errorId);
 
-            _logger.LogInformation("{ExceptionType}, Message: {message}, Description: {description}, RedirectUri: {redirecturi}", 
-                "Auth", message.Error, message.ErrorDescription, message.RedirectUri);
+            _logger.LogError("{Subject}{Description}{RedirectUri}",
+                message.Error, message.ErrorDescription, message.RedirectUri ?? String.Empty);
 
             return View("Error", new ErrorViewModel
             {

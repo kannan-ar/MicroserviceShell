@@ -1,3 +1,4 @@
+using Common.Logging;
 using Identity.API;
 using Identity.API.Data;
 using Identity.API.Extensions;

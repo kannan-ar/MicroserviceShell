@@ -13,8 +13,7 @@ namespace Identity.API
     {
         private readonly IWebHostEnvironment _env;
         public IConfiguration Configuration { get; }
-
-
+        
         public Startup(IWebHostEnvironment env, IConfiguration configuration)
         {
             _env = env;
@@ -81,15 +80,15 @@ namespace Identity.API
 
         public void Configure(IApplicationBuilder app)
         {
+            app.UseExceptionHandler("/Account/Error");
+
             if (_env.IsDevelopment())
             {
-                app.UseDeveloperExceptionPage();
                 app.UseSwagger();
                 app.UseSwaggerUI(c => c.SwaggerEndpoint("/swagger/v1/swagger.json", "Shell v1"));
             }
 
             app.UseStaticFiles();
-
             app.UseForwardedHeaders();
             app.UseCookiePolicy(new CookiePolicyOptions { MinimumSameSitePolicy = SameSiteMode.Lax });
             app.UseIdentityServer();

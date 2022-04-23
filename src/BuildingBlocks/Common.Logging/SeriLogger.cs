@@ -1,10 +1,11 @@
-﻿using Serilog;
+﻿using Microsoft.AspNetCore.Hosting;
+using Serilog;
 using Serilog.Sinks.Elasticsearch;
 using System.Reflection;
 
-namespace ShellApp.Extensions
+namespace Common.Logging
 {
-    public static class WebHostBuilderExtensions
+    public static class SeriLogger
     {
         public static IWebHostBuilder ConfigureSerilog(this IWebHostBuilder webHostBuilder)
         {
@@ -17,10 +18,10 @@ namespace ShellApp.Extensions
                     .WriteTo.Elasticsearch(
                         new ElasticsearchSinkOptions(new Uri(context.Configuration["ElasticConfiguration:Uri"]))
                         {
-                            IndexFormat = $"applogs-{Assembly.GetExecutingAssembly().GetName().Name.ToLower().Replace(".", "-")}-{context.HostingEnvironment.EnvironmentName?.Replace(".", "-")}-logs-{DateTime.UtcNow:yyyy-MM}",
+                            IndexFormat = $"applogs-{context.Configuration["ElasticConfiguration:LogPrefix"]}-{context.HostingEnvironment.EnvironmentName?.Replace(".", "-")}-logs-{DateTime.UtcNow:yyyy-MM}",
                             AutoRegisterTemplate = true,
-                            NumberOfShards = Convert.ToInt32(context.Configuration["ElasticConfiguration:NumberOfShards"]),
-                            NumberOfReplicas = Convert.ToInt32(context.Configuration["ElasticConfiguration:NumberOfReplicas"])
+                            NumberOfShards = 1,
+                            NumberOfReplicas = 2
                         })
                     .Enrich.WithProperty("Environment", context.HostingEnvironment.EnvironmentName)
                     .ReadFrom.Configuration(context.Configuration);
