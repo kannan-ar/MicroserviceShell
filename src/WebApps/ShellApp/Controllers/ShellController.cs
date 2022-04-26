@@ -1,4 +1,5 @@
-﻿using Microsoft.AspNetCore.Authorization;
+﻿using Common.Logging;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Diagnostics;
 using Microsoft.AspNetCore.Mvc;
 
@@ -39,7 +40,7 @@ namespace ShellApp.Controllers
 
             if (exception != null)
             {
-                _logger.LogError("{Error}{StackTrace}", exception.Error.Message, exception.Error.StackTrace);
+                _logger.LogAppError(LogCategory.ShellApp, "{Error}{StackTrace}", exception.Error.Message, exception.Error.StackTrace);
             }
 
             return View();

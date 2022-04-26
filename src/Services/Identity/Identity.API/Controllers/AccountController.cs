@@ -1,4 +1,5 @@
-﻿using Identity.API.Models;
+﻿using Common.Logging;
+using Identity.API.Models;
 using Identity.API.Models.AccountViewModels;
 using Identity.API.Services;
 using IdentityServer4.Models;
@@ -39,7 +40,6 @@ namespace Identity.API.Controllers
         public IActionResult Login(string returnUrl)
         {
             ViewData["ReturnUrl"] = returnUrl;
-
             return View();
         }
 
@@ -119,7 +119,6 @@ namespace Identity.API.Controllers
             return vm;
         }
 
-
         [HttpGet]
         public IActionResult Register()
         {
@@ -156,7 +155,7 @@ namespace Identity.API.Controllers
         {
             var message = await _interaction.GetErrorContextAsync(errorId);
 
-            _logger.LogError("{Subject}{Description}{RedirectUri}",
+            _logger.LogAppError(LogCategory.Identity, "{Subject}{Description}{RedirectUri}",
                 message.Error, message.ErrorDescription, message.RedirectUri ?? String.Empty);
 
             return View("Error", new ErrorViewModel

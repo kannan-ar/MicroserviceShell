@@ -1,7 +1,6 @@
 ﻿using Microsoft.AspNetCore.Hosting;
 using Serilog;
 using Serilog.Sinks.Elasticsearch;
-using System.Reflection;
 
 namespace Common.Logging
 {
