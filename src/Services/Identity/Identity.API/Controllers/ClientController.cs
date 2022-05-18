@@ -46,6 +46,10 @@ namespace Identity.API.Controllers
                 new Secret(model.ClientSecret.Sha256())
             };
 
+            item.RequireClientSecret = false;
+            item.AllowedGrantTypes = GrantTypes.Code;
+            item.RequirePkce = true;
+
             await service.AddClient(item);
 
             return RedirectToAction(nameof(Index));

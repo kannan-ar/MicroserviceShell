@@ -2,6 +2,7 @@
 using IdentityServer4.EntityFramework.Mappers;
 using IdentityServer4.Models;
 using Microsoft.EntityFrameworkCore;
+using Entities = IdentityServer4.EntityFramework.Entities;
 
 namespace Identity.API.Repositories
 {
@@ -17,6 +18,15 @@ namespace Identity.API.Repositories
         public async Task AddClient(Client client)
         {
             context.Clients.Add(client.ToEntity());
+
+            foreach(var scope in client.AllowedScopes)
+            {
+                context.ApiScopes.Add(new Entities.ApiScope
+                {
+                    Name = scope
+                });
+            }
+
             await context.SaveChangesAsync();
         }
 
@@ -33,7 +43,11 @@ namespace Identity.API.Repositories
 
         public async Task<List<Client>> GetAllClients()
         {
-            var clients = await context.Clients.Include(x => x.RedirectUris).Include(x => x.PostLogoutRedirectUris).ToListAsync();
+            var clients = await context.Clients
+                .Include(x => x.RedirectUris)
+                .Include(x => x.PostLogoutRedirectUris)
+                .Include(x => x.AllowedScopes)
+                .ToListAsync();
             return clients.Select(x => x.ToModel()).ToList();
         }
     }

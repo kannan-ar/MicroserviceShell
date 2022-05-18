@@ -1,10 +1,12 @@
 ﻿@model List<ClientViewModel>
 
-<table style="border:1px">
+<table style="border:1px;width:100%">
     <tr>
         <th>Client ID</th>
         <th>Redirect Uri</th>
         <th>Post Logout Redirect Uri</th>
+        <th>Allowed Scope</th>
+        <th></th>
     </tr>
     @foreach(var client in Model)
     {
@@ -12,6 +14,7 @@
             <td>@client.ClientId</td>
             <td>@client.RedirectUri</td>
             <td>@client.PostLogoutRedirectUri</td>
+            <td>@client.AllowedScope</td>
             <td><a href="@Url.Action("Delete", "Client", new { id = client.ClientId })">Delete</a></td>
         </tr>
     }
