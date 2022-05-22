@@ -45,8 +45,11 @@ services:
     environment:
       - ASPNETCORE_ENVIRONMENT=Development
       - IdentityUrl=http://${SHELL_EXTERNAL_DNS_NAME_OR_IP}:8001
+      - CallBackUrl=http://${SHELL_EXTERNAL_DNS_NAME_OR_IP}:8003
     ports:
-      - "8003:80" 
+      - "8003:80"
+    depends_on:
+      - identity.api
 
   portainer:
     container_name: portainer

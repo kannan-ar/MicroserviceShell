@@ -19,13 +19,13 @@ namespace Identity.API.Repositories
         {
             context.Clients.Add(client.ToEntity());
 
-            foreach(var scope in client.AllowedScopes)
-            {
-                context.ApiScopes.Add(new Entities.ApiScope
-                {
-                    Name = scope
-                });
-            }
+            //foreach(var scope in client.AllowedScopes)
+            //{
+            //    context.ApiScopes.Add(new Entities.ApiScope
+            //    {
+            //        Name = scope
+            //    });
+            //}
 
             await context.SaveChangesAsync();
         }

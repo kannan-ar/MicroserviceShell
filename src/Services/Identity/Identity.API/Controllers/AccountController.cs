@@ -93,14 +93,9 @@ namespace Identity.API.Controllers
 
         private async Task<LoginViewModel> BuildLoginViewModelAsync(string returnUrl, AuthorizationRequest context)
         {
-            var allowLocal = true;
             if (context.Client?.ClientId != null)
             {
                 var client = await _clientStore.FindEnabledClientByIdAsync(context.Client?.ClientId);
-                if (client != null)
-                {
-                    allowLocal = client.EnableLocalLogin;
-                }
             }
 
             return new LoginViewModel

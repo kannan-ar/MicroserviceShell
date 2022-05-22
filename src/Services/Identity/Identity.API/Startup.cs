@@ -46,30 +46,55 @@ namespace Identity.API
 
             services.AddIdentityServer(x =>
             {
-                x.IssuerUri = Configuration.GetValue<string>("IssuerUri");
-                x.Authentication.CookieLifetime = TimeSpan.FromMinutes(30);
                 x.UserInteraction.ErrorUrl = "/Account/Error";
             })
-             .AddSigningCredentialBasedOnEnviornment(_env)
-             .AddAspNetIdentity<ApplicationUser>()
-             .AddConfigurationStore(options =>
-             {
-                 options.ConfigureDbContext = builder => builder.UseSqlServer(connectionString,
-                     sqlServerOptionsAction: sqlOptions =>
-                     {
-                         sqlOptions.MigrationsAssembly(migrationsAssembly);
-                         EnableRetryOnFailure(sqlOptions);
-                     });
-             })
-             .AddOperationalStore(options =>
-             {
-                 options.ConfigureDbContext = builder => builder.UseSqlServer(connectionString,
-                     sqlServerOptionsAction: sqlOptions =>
-                     {
-                         sqlOptions.MigrationsAssembly(migrationsAssembly);
-                         EnableRetryOnFailure(sqlOptions);
-                     });
-             });
+            .AddDeveloperSigningCredential()
+            .AddAspNetIdentity<ApplicationUser>()
+            .AddConfigurationStore(options =>
+            {
+                options.ConfigureDbContext = b => b.UseSqlServer(connectionString,
+                    sql => sql.MigrationsAssembly(migrationsAssembly));
+            })
+            .AddOperationalStore(options =>
+            {
+                options.ConfigureDbContext = b => b.UseSqlServer(connectionString,
+                    sql => sql.MigrationsAssembly(migrationsAssembly));
+            });
+
+            //services.AddIdentityServer()
+               //.AddInMemoryIdentityResources(Config.GetIdentityResources())
+               //.AddInMemoryApiResources(Config.GetApis())
+               //.AddInMemoryClients(Config.GetClients())
+               //.AddTestUsers(TestUsers.Users)
+               //.AddInMemoryApiScopes(Config.Scopes)
+               //.AddDeveloperSigningCredential();
+
+            //services.AddIdentityServer(x =>
+            //{
+            //    x.IssuerUri = Configuration.GetValue<string>("IssuerUri");
+            //    x.Authentication.CookieLifetime = TimeSpan.FromMinutes(30);
+            //    x.UserInteraction.ErrorUrl = "/Account/Error";
+            //})
+            // .AddSigningCredentialBasedOnEnviornment(_env)
+            // .AddAspNetIdentity<ApplicationUser>()
+            // .AddConfigurationStore(options =>
+            // {
+            //     options.ConfigureDbContext = builder => builder.UseSqlServer(connectionString,
+            //         sqlServerOptionsAction: sqlOptions =>
+            //         {
+            //             sqlOptions.MigrationsAssembly(migrationsAssembly);
+            //             EnableRetryOnFailure(sqlOptions);
+            //         });
+            // })
+            // .AddOperationalStore(options =>
+            // {
+            //     options.ConfigureDbContext = builder => builder.UseSqlServer(connectionString,
+            //         sqlServerOptionsAction: sqlOptions =>
+            //         {
+            //             sqlOptions.MigrationsAssembly(migrationsAssembly);
+            //             EnableRetryOnFailure(sqlOptions);
+            //         });
+            // });
 
             services.AddSwagger();
 

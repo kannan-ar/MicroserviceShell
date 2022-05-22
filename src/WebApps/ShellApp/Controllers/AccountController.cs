@@ -7,10 +7,10 @@ using System.Security.Claims;
 
 namespace ShellApp.Controllers
 {
-    [Authorize(AuthenticationSchemes = OpenIdConnectDefaults.AuthenticationScheme)]
+    [Authorize]
     public class AccountController : Controller
     {
-        [Authorize(AuthenticationSchemes = OpenIdConnectDefaults.AuthenticationScheme)]
+        [Authorize]
         public async Task<IActionResult> SignIn(string returnUrl)
         {
             var user = User as ClaimsPrincipal;
@@ -23,7 +23,7 @@ namespace ShellApp.Controllers
 
             // "Catalog" because UrlHelper doesn't support nameof() for controllers
             // https://github.com/aspnet/Mvc/issues/5853
-            return RedirectToAction(nameof(ShellController.Index), "Index");
+            return RedirectToAction(nameof(ShellController.Index), "Shell");
         }
 
         public async Task<IActionResult> Signout()

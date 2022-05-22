@@ -30,6 +30,7 @@ namespace ShellApp
             app.UseExceptionHandler("/Shell/Error");
           
             app.UseStaticFiles();
+            app.UseCookiePolicy(new CookiePolicyOptions { MinimumSameSitePolicy = SameSiteMode.Lax });
             app.UseRouting();
             app.UseAuthentication();
             app.UseAuthorization();
