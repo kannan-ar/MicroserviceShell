@@ -18,30 +18,13 @@ namespace Identity.API.Data
 
             if(!context.ApiScopes.Any())
             {
-                context.ApiScopes.Add(new ApiScope("api1", "api1").ToEntity());
+                context.ApiScopes.Add(new ApiScope("shellapp", "shellapp").ToEntity());
                 await context.SaveChangesAsync();
             }
 
             if (!context.ApiResources.Any())
             {
-                context.ApiResources.Add(new ApiResource("api1", "My API #1").ToEntity());
-
-                await context.SaveChangesAsync();
-            }
-
-            if(!context.Clients.Any())
-            {
-                context.Clients.Add(new Client
-                {
-                    ClientId = "pkce_client",
-                    ClientName = "MVC PKCE Client",
-                    AllowedGrantTypes = GrantTypes.Code,
-                    ClientSecrets = { new Secret("acf2ec6fb01a4b698ba240c2b10a0243".Sha256()) },
-                    RedirectUris = { "http://host.docker.internal:8003/signin-oidc" },
-                    AllowedScopes = { "openid", "profile", "api1" },
-                    RequirePkce = true,
-                    AllowPlainTextPkce = false
-                }.ToEntity());
+                context.ApiResources.Add(new ApiResource("shellapp", "Shell App").ToEntity());
 
                 await context.SaveChangesAsync();
             }

@@ -1,5 +1,5 @@
 ﻿using Microsoft.AspNetCore.Authentication.Cookies;
-using Microsoft.AspNetCore.Authentication.JwtBearer;
+using Microsoft.AspNetCore.Authentication.OpenIdConnect;
 
 namespace ShellApp.Extensions
 {
@@ -7,49 +7,29 @@ namespace ShellApp.Extensions
     {
         public static IServiceCollection AddCustomAuthentication(this IServiceCollection services, IConfiguration configuration)
         {
-            //var identityUrl = configuration.GetValue<string>("IdentityUrl");
-            //var callBackUrl = configuration.GetValue<string>("CallBackUrl");
-            //var sessionCookieLifetime = configuration.GetValue("SessionCookieLifetimeMinutes", 60);
-
-            //services.AddAuthentication(options =>
-            //{
-            //    options.DefaultScheme = CookieAuthenticationDefaults.AuthenticationScheme;
-            //    options.DefaultChallengeScheme = JwtBearerDefaults.AuthenticationScheme;
-            //})
-            //.AddCookie(setup => setup.ExpireTimeSpan = TimeSpan.FromMinutes(sessionCookieLifetime))
-            //.AddOpenIdConnect(options =>
-            //{
-            //    options.SignInScheme = CookieAuthenticationDefaults.AuthenticationScheme;
-            //    options.Authority = identityUrl.ToString();
-            //    options.SignedOutRedirectUri = callBackUrl.ToString();
-            //    options.ClientId = configuration.GetValue<string>("ClientId");
-            //    options.ClientSecret = configuration.GetValue<string>("ClientSecret");
-            //    options.ResponseType = "code id_token";
-            //    options.SaveTokens = true;
-            //    options.GetClaimsFromUserInfoEndpoint = true;
-            //    options.RequireHttpsMetadata = false;
-
-            //});
+            var sessionCookieLifetime = configuration.GetValue("SessionCookieLifetimeMinutes", 60);
 
             services.AddAuthentication(options =>
             {
-                options.DefaultAuthenticateScheme = "cookie";
-                options.DefaultSignInScheme = "cookie";
-                options.DefaultChallengeScheme = "oidc";
-            }).AddCookie("cookie")
-            .AddOpenIdConnect("oidc", options =>
+                options.DefaultAuthenticateScheme = CookieAuthenticationDefaults.AuthenticationScheme;
+                options.DefaultSignInScheme = CookieAuthenticationDefaults.AuthenticationScheme;
+                options.DefaultChallengeScheme = OpenIdConnectDefaults.AuthenticationScheme;
+            }).AddCookie(CookieAuthenticationDefaults.AuthenticationScheme, options =>
+            {
+                options.ExpireTimeSpan = TimeSpan.FromMinutes(sessionCookieLifetime);
+            })
+            .AddOpenIdConnect(OpenIdConnectDefaults.AuthenticationScheme, options =>
             {
                 var identityUrl = configuration.GetValue<string>("IdentityUrl");
                 var callBackUrl = configuration.GetValue<string>("CallBackUrl");
 
                 options.Authority = identityUrl;
                 options.RequireHttpsMetadata = false;
-
                 options.ClientId = configuration.GetValue<string>("ClientId");
                 options.ClientSecret = configuration.GetValue<string>("ClientSecret");
                 options.ResponseType = "code";
                 options.SignedOutRedirectUri = callBackUrl;
-                options.Scope.Add("api1");
+                options.Scope.Add(configuration.GetValue<string>("Scope"));
                 options.UsePkce = true;
             });
 
