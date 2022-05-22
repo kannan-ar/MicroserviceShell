@@ -29,7 +29,7 @@ namespace ShellApp.Controllers
             await HttpContext.SignOutAsync(CookieAuthenticationDefaults.AuthenticationScheme);
             await HttpContext.SignOutAsync(OpenIdConnectDefaults.AuthenticationScheme);
 
-            var homeUrl = Url.Action(nameof(ShellController.Index), "Index");
+            var homeUrl = Url.Action(nameof(ShellController.Index), "Shell");
             return new SignOutResult(OpenIdConnectDefaults.AuthenticationScheme,
                 new AuthenticationProperties { RedirectUri = homeUrl });
         }
