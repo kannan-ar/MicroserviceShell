@@ -1,7 +1,16 @@
-﻿using MicroFrontend.API.Filters;
+﻿using MicroFrontend.API.Data;
+using MicroFrontend.API.Data.Repositories;
+using MicroFrontend.API.Filters;
+using MicroFrontend.API.Models;
+using MicroFrontend.API.Services;
+using MicroFrontend.API.Services.Implementations;
 using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.OpenApi.Models;
+using MongoDB.Driver;
 using System.IdentityModel.Tokens.Jwt;
+using System.Reflection;
+using MicroFrontend.API.Data.MongoDb.Entities;
+using MicroFrontend.API.Models.Entities;
 
 namespace MicroFrontend.API.Extensions
 {
@@ -57,6 +66,25 @@ namespace MicroFrontend.API.Extensions
                 options.OperationFilter<AuthorizeCheckOperationFilter>();
             });
 
+        }
+
+        public static void AddMongoDb(this IServiceCollection services, IConfiguration configuration)
+        {
+            var connectionString = configuration["MongoDbSettings:ConnectionString"];
+
+            services.Configure<MongoDbSettings>(configuration.GetSection("MongoDbSettings"));
+            services.AddSingleton<IMongoClient>(new MongoClient(connectionString));
+            services.AddSingleton<IDbRepository<Models.Entities.Row>, RowRepository>();
+        }
+
+        public static void AddEntityMapper(this IServiceCollection services)
+        {
+            services.AddAutoMapper(Assembly.GetExecutingAssembly());
+        }
+
+        public static void AddServices(this IServiceCollection services)
+        {
+            services.AddSingleton<IRowService, RowService>();
         }
     }
 }

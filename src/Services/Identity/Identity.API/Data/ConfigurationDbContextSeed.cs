@@ -8,7 +8,7 @@ namespace Identity.API.Data
     {
         public async Task SeedAsync(ConfigurationDbContext context)
         {
-            if(!context.IdentityResources.Any())
+            if (!context.IdentityResources.Any())
             {
                 context.IdentityResources.Add(new IdentityResources.OpenId().ToEntity());
                 context.IdentityResources.Add(new IdentityResources.Profile().ToEntity());
@@ -16,7 +16,7 @@ namespace Identity.API.Data
                 await context.SaveChangesAsync();
             }
 
-            if(!context.ApiScopes.Any())
+            if (!context.ApiScopes.Any())
             {
                 context.ApiScopes.Add(new ApiScope("mfscope", "Microfrontend API").ToEntity());
                 context.ApiScopes.Add(new ApiScope("shellapp", "shellapp").ToEntity());
@@ -35,7 +35,7 @@ namespace Identity.API.Data
                 await context.SaveChangesAsync();
             }
 
-            if(!context.Clients.Any())
+            if (!context.Clients.Any())
             {
                 context.Clients.Add(new Client
                 {
@@ -43,14 +43,14 @@ namespace Identity.API.Data
                     ClientName = "shellapp",
                     AllowedGrantTypes = GrantTypes.Code,
                     RedirectUris = new List<string>
-                    { 
-                        "http://host.docker.internal:8003/signin-oidc" 
+                    {
+                        "http://host.docker.internal:8003/signin-oidc"
                     },
                     PostLogoutRedirectUris = new List<string>
                     {
                         "http://host.docker.internal:8003/signout-callback-oidc"
                     },
-                    ClientSecrets = 
+                    ClientSecrets =
                     {
                         new Secret("acf2ec6fb01a4b698ba240c2b10a0243".Sha256())
                     },
