@@ -1,46 +1,52 @@
 using Common.Logging;
-using Identity.API;
 using Identity.API.Data;
 using Identity.API.Extensions;
 using IdentityServer4.EntityFramework.DbContexts;
-using Microsoft.AspNetCore;
+using Microsoft.AspNetCore.Hosting;
+using Microsoft.Extensions.Configuration;
+using Microsoft.Extensions.Hosting;
+using Microsoft.Extensions.Logging;
+using System.IO;
 
-var configuration = GetConfiguration();
-
-try
+namespace Identity.API
 {
-    var host = BuildWebHost(configuration, args);
-
-    host.MigrateDbContext<PersistedGrantDbContext>((_, __) => { })
-        .MigrateDbContext<ApplicationDbContext>((_, __) => { })
-        .MigrateDbContext<ConfigurationDbContext>((context, services) =>
+    public class Program
+    {
+        private static IConfiguration GetConfiguration()
         {
-            new ConfigurationDbContextSeed().SeedAsync(context).Wait();
-        });
+            var builder = new ConfigurationBuilder()
+                .SetBasePath(Directory.GetCurrentDirectory())
+                .AddJsonFile("appsettings.json", optional: false, reloadOnChange: true)
+                .AddEnvironmentVariables();
 
-    host.Run();
-    return 0;
-}
-catch
-{
-    return 1;
-}
+            return builder.Build();
+        }
 
-IWebHost BuildWebHost(IConfiguration configuration, string[] args) =>
-    WebHost.CreateDefaultBuilder(args)
-    .CaptureStartupErrors(false)
-    .ConfigureAppConfiguration(x => x.AddConfiguration(configuration))
-    .UseStartup<Startup>()
-    .UseContentRoot(Directory.GetCurrentDirectory())
-    .ConfigureSerilog()
-    .Build();
+        public static void Main(string[] args)
+        {
+            var configuration = GetConfiguration();
 
-IConfiguration GetConfiguration()
-{
-    var builder = new ConfigurationBuilder()
-        .SetBasePath(Directory.GetCurrentDirectory())
-        .AddJsonFile("appsettings.json", optional: false, reloadOnChange: true)
-        .AddEnvironmentVariables();
+            var host = CreateHostBuilder(configuration, args).Build();
 
-    return builder.Build();
+            host.MigrateDbContext<PersistedGrantDbContext>((_, __) => { })
+            .MigrateDbContext<ApplicationDbContext>((_, __) => { })
+            .MigrateDbContext<ConfigurationDbContext>((context, services) =>
+            {
+                new ConfigurationDbContextSeed().SeedAsync(context).Wait();
+            });
+
+            host.Run();
+        }
+
+        public static IHostBuilder CreateHostBuilder(IConfiguration configuration, string[] args) =>
+            Host.CreateDefaultBuilder(args)
+                .ConfigureWebHostDefaults(webBuilder =>
+                {
+                    webBuilder.CaptureStartupErrors(false);
+                    webBuilder.ConfigureAppConfiguration(x => x.AddConfiguration(configuration));
+                    webBuilder.UseStartup<Startup>();
+                    webBuilder.UseContentRoot(Directory.GetCurrentDirectory());
+                    webBuilder.ConfigureSerilog();
+                });
+    }
 }

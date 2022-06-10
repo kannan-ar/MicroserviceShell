@@ -2,8 +2,13 @@
 using Identity.API.Repositories;
 using Identity.API.Services;
 using Microsoft.AspNetCore.DataProtection;
+using Microsoft.AspNetCore.Hosting;
+using Microsoft.Extensions.Configuration;
+using Microsoft.Extensions.DependencyInjection;
+using Microsoft.Extensions.Hosting;
 using Microsoft.OpenApi.Models;
 using StackExchange.Redis;
+using System;
 
 namespace Identity.API.Extensions
 {
@@ -12,7 +17,7 @@ namespace Identity.API.Extensions
         public static IIdentityServerBuilder AddSigningCredentialBasedOnEnviornment(
             this IIdentityServerBuilder services, IWebHostEnvironment env)
         {
-            if(env.IsDevelopment())
+            if (env.IsDevelopment())
             {
                 services.AddDeveloperSigningCredential();
             }

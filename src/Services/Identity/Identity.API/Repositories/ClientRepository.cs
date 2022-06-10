@@ -2,7 +2,9 @@
 using IdentityServer4.EntityFramework.Mappers;
 using IdentityServer4.Models;
 using Microsoft.EntityFrameworkCore;
-using Entities = IdentityServer4.EntityFramework.Entities;
+using System.Collections.Generic;
+using System.Linq;
+using System.Threading.Tasks;
 
 namespace Identity.API.Repositories
 {
@@ -26,7 +28,7 @@ namespace Identity.API.Repositories
         {
             var client = context.Clients.FirstOrDefault(x => x.ClientId == clientId);
 
-            if(client != null)
+            if (client != null)
             {
                 context.Clients.Remove(client);
                 await context.SaveChangesAsync();

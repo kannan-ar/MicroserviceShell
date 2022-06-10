@@ -9,6 +9,5 @@ namespace Identity.API.Data
         public ApplicationDbContext(DbContextOptions<ApplicationDbContext> options) : base(options)
         {
         }
-
     }
 }

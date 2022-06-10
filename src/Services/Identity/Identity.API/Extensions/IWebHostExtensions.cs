@@ -1,22 +1,25 @@
-﻿using Microsoft.Data.SqlClient;
+﻿using Microsoft.AspNetCore.Hosting;
+using Microsoft.Data.SqlClient;
 using Microsoft.EntityFrameworkCore;
+using Microsoft.Extensions.Configuration;
+using Microsoft.Extensions.DependencyInjection;
+using Microsoft.Extensions.Hosting;
+using Microsoft.Extensions.Logging;
 using Polly;
-using Serilog;
-using Serilog.Sinks.Elasticsearch;
-using System.Reflection;
+using System;
 
 namespace Identity.API.Extensions
 {
     public static class IWebHostExtensions
     {
-        public static bool IsInKubernetes(this IWebHost webHost)
+        public static bool IsInKubernetes(this IHost webHost)
         {
             var cfg = webHost.Services.GetService<IConfiguration>();
             var orchestratorType = cfg.GetValue<string>("OrchestratorType");
             return orchestratorType?.ToUpper() == "K8S";
         }
 
-        public static IWebHost MigrateDbContext<TContext>(this IWebHost webHost, Action<TContext, IServiceProvider> seeder) where TContext : DbContext
+        public static IHost MigrateDbContext<TContext>(this IHost webHost, Action<TContext, IServiceProvider> seeder) where TContext : DbContext
         {
             var underK8s = webHost.IsInKubernetes();
 

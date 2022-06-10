@@ -1,36 +1,42 @@
 using Common.Logging;
-using Microsoft.AspNetCore;
-using ShellApp;
+using Microsoft.AspNetCore.Hosting;
+using Microsoft.Extensions.Configuration;
+using Microsoft.Extensions.Hosting;
+using Microsoft.Extensions.Logging;
+using System;
+using System.IO;
 
-var configuration = GetConfiguration();
-
-try
+namespace ShellApp
 {
-    var host = BuildWebHost(configuration, args);
-    host.Run();
-    return 0;
-}
-catch
-{
-    return 1;
-}
+    public class Program
+    {
+        private static IConfiguration GetConfiguration()
+        {
+            var builder = new ConfigurationBuilder()
+                .SetBasePath(Directory.GetCurrentDirectory())
+                .AddJsonFile("appsettings.json", optional: false, reloadOnChange: true)
+                .AddJsonFile($"appsettings{Environment.GetEnvironmentVariable("ASPNETCORE_ENVIRONMENT")}.json", optional: true)
+                .AddEnvironmentVariables();
 
-IWebHost BuildWebHost(IConfiguration configuration, string[] args) =>
-    WebHost.CreateDefaultBuilder(args)
-    .CaptureStartupErrors(false)
-    .ConfigureAppConfiguration(x => x.AddConfiguration(configuration))
-    .UseStartup<Startup>()
-    .UseContentRoot(Directory.GetCurrentDirectory())
-    .ConfigureSerilog()
-    .Build();
+            return builder.Build();
+        }
 
-IConfiguration GetConfiguration()
-{
-    var builder = new ConfigurationBuilder()
-        .SetBasePath(Directory.GetCurrentDirectory())
-        .AddJsonFile("appsettings.json", optional: false, reloadOnChange: true)
-        .AddJsonFile($"appsettings{Environment.GetEnvironmentVariable("ASPNETCORE_ENVIRONMENT")}.json", optional: true)
-        .AddEnvironmentVariables();
+        public static void Main(string[] args)
+        {
+            var configuration = GetConfiguration();
 
-    return builder.Build();
+            CreateHostBuilder(configuration, args).Build().Run();
+        }
+
+        public static IHostBuilder CreateHostBuilder(IConfiguration configuration, string[] args) =>
+            Host.CreateDefaultBuilder(args)
+                .ConfigureWebHostDefaults(webBuilder =>
+                {
+                    webBuilder.CaptureStartupErrors(false);
+                    webBuilder.ConfigureAppConfiguration(x => x.AddConfiguration(configuration));
+                    webBuilder.UseStartup<Startup>();
+                    webBuilder.UseContentRoot(Directory.GetCurrentDirectory());
+                    webBuilder.ConfigureSerilog();
+                });
+    }
 }

@@ -3,6 +3,8 @@ using Identity.API.Models.ClientViewModels;
 using Identity.API.Services;
 using IdentityServer4.Models;
 using Microsoft.AspNetCore.Mvc;
+using System.Collections.Generic;
+using System.Threading.Tasks;
 
 namespace Identity.API.Controllers
 {

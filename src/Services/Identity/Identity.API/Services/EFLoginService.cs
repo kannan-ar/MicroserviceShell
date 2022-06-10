@@ -1,6 +1,7 @@
 ﻿using Identity.API.Models;
 using Microsoft.AspNetCore.Authentication;
 using Microsoft.AspNetCore.Identity;
+using System.Threading.Tasks;
 
 namespace Identity.API.Services
 {

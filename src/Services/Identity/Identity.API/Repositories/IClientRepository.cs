@@ -1,5 +1,7 @@
-﻿
-using IdentityServer4.Models;
+﻿using IdentityServer4.Models;
+using System.Collections.Generic;
+using System.Threading.Tasks;
+
 
 namespace Identity.API.Repositories
 {

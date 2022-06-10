@@ -1,0 +1,91 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 16
+VisualStudioVersion = 16.0.32228.343
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "src", "src", "{4B28C70A-30E9-4EB5-BCEC-2FA07813E52E}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "ApiGateways", "ApiGateways", "{67696A07-8346-4F00-B978-1BC47A757376}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution Items", "{1C58B92E-19E7-4688-B029-D0E0C906E051}"
+	ProjectSection(SolutionItems) = preProject
+		.env = .env
+	EndProjectSection
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "BuildingBlocks", "BuildingBlocks", "{CEC1FD7A-046A-4169-BF68-5A1912E60FEE}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Common.Logging", "BuildingBlocks\Common.Logging\Common.Logging.csproj", "{AEBDDA23-2BB3-4DAA-B37D-19D59B1A21C7}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Services", "Services", "{D98C4E02-71AB-47E2-BB55-3A725909CA5E}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Identity", "Identity", "{A40FAF02-5411-4D0E-81A1-002D4B506878}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Identity.API", "Services\Identity\Identity.API\Identity.API.csproj", "{1EE0B56B-C512-4397-BD40-842A8B501BE2}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Shell", "Shell", "{0A08C36E-1E72-470D-AD33-091BB2B241B2}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Shell.API", "Services\Shell\Shell.API\Shell.API.csproj", "{B3C88C0C-C862-4514-8A5A-756511663CA1}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "WebApps", "WebApps", "{7C8275A6-7C46-495D-AF0E-676177B7EEAC}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ShellApp", "WebApps\ShellApp\ShellApp.csproj", "{BC4EAF01-5880-41BD-8750-45D3565DFC57}"
+EndProject
+Project("{E53339B2-1760-4266-BCC7-CA923CBCF16C}") = "docker-compose", "docker-compose.dcproj", "{E18A18ED-BF32-4F68-9802-8E9A8738FAA8}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		NoVariablesDefault|Any CPU = NoVariablesDefault|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{AEBDDA23-2BB3-4DAA-B37D-19D59B1A21C7}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{AEBDDA23-2BB3-4DAA-B37D-19D59B1A21C7}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{AEBDDA23-2BB3-4DAA-B37D-19D59B1A21C7}.NoVariablesDefault|Any CPU.ActiveCfg = Release|Any CPU
+		{AEBDDA23-2BB3-4DAA-B37D-19D59B1A21C7}.NoVariablesDefault|Any CPU.Build.0 = Release|Any CPU
+		{AEBDDA23-2BB3-4DAA-B37D-19D59B1A21C7}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{AEBDDA23-2BB3-4DAA-B37D-19D59B1A21C7}.Release|Any CPU.Build.0 = Release|Any CPU
+		{1EE0B56B-C512-4397-BD40-842A8B501BE2}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{1EE0B56B-C512-4397-BD40-842A8B501BE2}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{1EE0B56B-C512-4397-BD40-842A8B501BE2}.NoVariablesDefault|Any CPU.ActiveCfg = Release|Any CPU
+		{1EE0B56B-C512-4397-BD40-842A8B501BE2}.NoVariablesDefault|Any CPU.Build.0 = Release|Any CPU
+		{1EE0B56B-C512-4397-BD40-842A8B501BE2}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{1EE0B56B-C512-4397-BD40-842A8B501BE2}.Release|Any CPU.Build.0 = Release|Any CPU
+		{B3C88C0C-C862-4514-8A5A-756511663CA1}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{B3C88C0C-C862-4514-8A5A-756511663CA1}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{B3C88C0C-C862-4514-8A5A-756511663CA1}.NoVariablesDefault|Any CPU.ActiveCfg = Release|Any CPU
+		{B3C88C0C-C862-4514-8A5A-756511663CA1}.NoVariablesDefault|Any CPU.Build.0 = Release|Any CPU
+		{B3C88C0C-C862-4514-8A5A-756511663CA1}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{B3C88C0C-C862-4514-8A5A-756511663CA1}.Release|Any CPU.Build.0 = Release|Any CPU
+		{BC4EAF01-5880-41BD-8750-45D3565DFC57}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{BC4EAF01-5880-41BD-8750-45D3565DFC57}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{BC4EAF01-5880-41BD-8750-45D3565DFC57}.NoVariablesDefault|Any CPU.ActiveCfg = Release|Any CPU
+		{BC4EAF01-5880-41BD-8750-45D3565DFC57}.NoVariablesDefault|Any CPU.Build.0 = Release|Any CPU
+		{BC4EAF01-5880-41BD-8750-45D3565DFC57}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{BC4EAF01-5880-41BD-8750-45D3565DFC57}.Release|Any CPU.Build.0 = Release|Any CPU
+		{E18A18ED-BF32-4F68-9802-8E9A8738FAA8}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{E18A18ED-BF32-4F68-9802-8E9A8738FAA8}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{E18A18ED-BF32-4F68-9802-8E9A8738FAA8}.NoVariablesDefault|Any CPU.ActiveCfg = NoVariablesDefault
+		{E18A18ED-BF32-4F68-9802-8E9A8738FAA8}.NoVariablesDefault|Any CPU.Build.0 = NoVariablesDefault
+		{E18A18ED-BF32-4F68-9802-8E9A8738FAA8}.Release|Any CPU.ActiveCfg = NoVariablesDefault
+		{E18A18ED-BF32-4F68-9802-8E9A8738FAA8}.Release|Any CPU.Build.0 = NoVariablesDefault
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(NestedProjects) = preSolution
+		{67696A07-8346-4F00-B978-1BC47A757376} = {4B28C70A-30E9-4EB5-BCEC-2FA07813E52E}
+		{CEC1FD7A-046A-4169-BF68-5A1912E60FEE} = {4B28C70A-30E9-4EB5-BCEC-2FA07813E52E}
+		{AEBDDA23-2BB3-4DAA-B37D-19D59B1A21C7} = {CEC1FD7A-046A-4169-BF68-5A1912E60FEE}
+		{D98C4E02-71AB-47E2-BB55-3A725909CA5E} = {4B28C70A-30E9-4EB5-BCEC-2FA07813E52E}
+		{A40FAF02-5411-4D0E-81A1-002D4B506878} = {D98C4E02-71AB-47E2-BB55-3A725909CA5E}
+		{1EE0B56B-C512-4397-BD40-842A8B501BE2} = {A40FAF02-5411-4D0E-81A1-002D4B506878}
+		{0A08C36E-1E72-470D-AD33-091BB2B241B2} = {D98C4E02-71AB-47E2-BB55-3A725909CA5E}
+		{B3C88C0C-C862-4514-8A5A-756511663CA1} = {0A08C36E-1E72-470D-AD33-091BB2B241B2}
+		{7C8275A6-7C46-495D-AF0E-676177B7EEAC} = {4B28C70A-30E9-4EB5-BCEC-2FA07813E52E}
+		{BC4EAF01-5880-41BD-8750-45D3565DFC57} = {7C8275A6-7C46-495D-AF0E-676177B7EEAC}
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {ED8CBADA-FC26-4F3C-BC34-F134C51BB997}
+	EndGlobalSection
+EndGlobal

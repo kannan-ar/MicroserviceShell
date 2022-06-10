@@ -13,15 +13,15 @@ services:
     depends_on:
       - identity.data 
 
-  microfrontend.api:
-    image: ${DOCKER_REGISTRY-}microfrontendapi
+  shell.api:
+    image: ${DOCKER_REGISTRY-}shellapi
     build:
       context: .
-      dockerfile: Services/MicroFrontend/MicroFrontend.API/Dockerfile
+      dockerfile: Services/Shell/Shell.API/Dockerfile
     depends_on:
-      - microfrontend.data
+      - shell.data
 
-  microfrontend.data:
+  shell.data:
     image: mongo
 
   shell.app:
@@ -30,7 +30,7 @@ services:
       context: .
       dockerfile: WebApps/ShellApp/Dockerfile
     depends_on:
-      - microfrontend.api
+      - shell.api
       - elasticsearch
 
   portainer:
@@ -45,5 +45,5 @@ services:
 volumes:
   identity_data:
   portainer_data:
-  microfrontend_data:
+  shell_data:
   elasticsearch-data:

@@ -1,6 +1,4 @@
-﻿using IdentityServer4.Models;
-using System.ComponentModel.DataAnnotations;
-using System.Xml.Linq;
+﻿using System.ComponentModel.DataAnnotations;
 
 namespace Identity.API.Models.AccountViewModels
 {

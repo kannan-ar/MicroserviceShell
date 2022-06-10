@@ -3,11 +3,11 @@
   <PropertyGroup Label="Globals">
     <ProjectVersion>2.1</ProjectVersion>
     <DockerTargetOS>Linux</DockerTargetOS>
-    <ProjectGuid>9fb5334f-7750-49a2-a907-9e6faedf2ca9</ProjectGuid>
+    <ProjectGuid>e18a18ed-bf32-4f68-9802-8e9a8738faa8</ProjectGuid>
     <DockerLaunchAction>LaunchBrowser</DockerLaunchAction>
     <DockerServiceUrl>http://host.docker.internal:8003/</DockerServiceUrl>
     <DockerServiceName>shell.app</DockerServiceName>
-    <DockerComposeProjectName>src</DockerComposeProjectName>
+	<DockerComposeProjectName>src</DockerComposeProjectName>
   </PropertyGroup>
   <ItemGroup>
     <None Include="docker-compose.override.yml">

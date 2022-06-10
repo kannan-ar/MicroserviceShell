@@ -1,5 +1,5 @@
 ﻿using AutoMapper;
-using System.Linq;
+using System.Collections.Generic;
 
 namespace Identity.API.Models.ClientViewModels
 {

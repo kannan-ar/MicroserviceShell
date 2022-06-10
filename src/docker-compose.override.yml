@@ -21,25 +21,25 @@ services:
     ports:
       - "8001:80"
 
-  microfrontend.api:
-    container_name: microfrontend.api
+  shell.api:
+    container_name: shell.api
     environment:
       - ASPNETCORE_ENVIRONMENT=Development
       - IdentityUrlExternal=http://${SHELL_EXTERNAL_DNS_NAME_OR_IP}:8001
-      - ConnectionString=mongodb://microfrontend.data:27017
+      - ConnectionString=mongodb://shell.data:27017
       - DbName=shell
       - IdentityUrl=http://identity.api
       - IdentityAudience=mfapiresource
       - OrchestratorType=${ORCHESTRATOR_TYPE}
     ports:
       - "8002:80"
-  
-  microfrontend.data:
-    container_name: microfrontend.data
+
+  shell.data:
+    container_name: shell.data
     ports:
       - "27017:27017"
     volumes:
-      - microfrontend_data:/data/db 
+      - shell_data:/data/db 
 
   shell.app:
     container_name: shell.app
@@ -81,4 +81,4 @@ services:
     depends_on:
       - elasticsearch
     ports:
-      - "5601:5601" 
+      - "5601:5601"

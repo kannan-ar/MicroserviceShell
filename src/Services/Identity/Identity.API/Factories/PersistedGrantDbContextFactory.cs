@@ -2,6 +2,8 @@
 using IdentityServer4.EntityFramework.Options;
 using Microsoft.EntityFrameworkCore.Design;
 using Microsoft.EntityFrameworkCore;
+using Microsoft.Extensions.Configuration;
+using System.IO;
 
 namespace Identity.API.Factories
 {
