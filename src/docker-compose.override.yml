@@ -26,8 +26,8 @@ services:
     environment:
       - ASPNETCORE_ENVIRONMENT=Development
       - IdentityUrlExternal=http://${SHELL_EXTERNAL_DNS_NAME_OR_IP}:8001
-      - ConnectionString=mongodb://shell.data:27017
-      - DbName=shell
+      - MongoDbSettings__ConnectionString=mongodb://shell.data:27017
+      - MongoDbSettings__DbName=shell
       - IdentityUrl=http://identity.api
       - IdentityAudience=mfapiresource
       - OrchestratorType=${ORCHESTRATOR_TYPE}
@@ -82,3 +82,4 @@ services:
       - elasticsearch
     ports:
       - "5601:5601"
+

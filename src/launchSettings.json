@@ -8,7 +8,7 @@
         "identity.data": "StartWithoutDebugging",
         "kibana": "StartWithoutDebugging",
         "portainer": "StartWithoutDebugging",
-        "shell.api": "StartWithoutDebugging",
+        "shell.api": "StartDebugging",
         "shell.app": "StartWithoutDebugging",
         "shell.data": "StartWithoutDebugging"
       },
