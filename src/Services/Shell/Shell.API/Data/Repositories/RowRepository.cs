@@ -4,6 +4,8 @@ using Microsoft.Extensions.Options;
 using MongoDB.Driver;
 using System.Collections.Generic;
 using System.Threading.Tasks;
+using Shell.API.Models.Entities;
+using Shell.API.Data.Entities;
 
 namespace Shell.API.Data.Repositories
 {
@@ -16,6 +18,8 @@ namespace Shell.API.Data.Repositories
         {
             _mapper = mapper;
         }
+
+        protected override string CollectionName => "rows";
 
         public async Task Add(Models.Entities.Row entity)
         {

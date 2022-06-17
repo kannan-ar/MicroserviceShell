@@ -8,6 +8,8 @@ namespace ShellApp.Extensions
 {
     public static class ServiceCollectionExtensions
     {
+        //https://stackoverflow.com/questions/65365920/addopenidconnect-middleware-clarification/65369709#65369709
+        //https://docs.microsoft.com/en-us/aspnet/core/security/data-protection/introduction?view=aspnetcore-5.0
         public static IServiceCollection AddCustomAuthentication(this IServiceCollection services, IConfiguration configuration)
         {
             var sessionCookieLifetime = configuration.GetValue("SessionCookieLifetimeMinutes", 60);
@@ -23,6 +25,7 @@ namespace ShellApp.Extensions
             })
             .AddOpenIdConnect(OpenIdConnectDefaults.AuthenticationScheme, options =>
             {
+                //https://connect2id.com/learn/openid-connect
                 var identityUrl = configuration.GetValue<string>("IdentityUrl");
                 var callBackUrl = configuration.GetValue<string>("CallBackUrl");
 
@@ -34,6 +37,7 @@ namespace ShellApp.Extensions
                 options.SignedOutRedirectUri = callBackUrl;
                 options.Scope.Add(configuration.GetValue<string>("Scope"));
                 options.UsePkce = true;
+                options.SaveTokens = true;
             });
 
             return services;

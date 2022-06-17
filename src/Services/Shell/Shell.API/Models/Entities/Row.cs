@@ -1,12 +1,7 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
-
-namespace Shell.API.Models.Entities
+﻿namespace Shell.API.Models.Entities
 {
-    public interface Row
+    public class Row
     {
-        int RowIndex { get; set; }
+        public int RowIndex { get; set; }
     }
 }

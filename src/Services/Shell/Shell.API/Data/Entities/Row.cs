@@ -1,6 +1,6 @@
 ﻿namespace Shell.API.Data.Entities
 {
-    public class Row : Models.Entities.Row
+    public class Row
     {
         public int RowIndex { get; set; }
     }

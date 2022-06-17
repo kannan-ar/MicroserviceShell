@@ -21,6 +21,7 @@ namespace Shell.API
         {
             services.AddControllers();
             services.AddMongoDb(Configuration);
+            services.AddRepositories();
             services.AddIdentityAuthentication(Configuration);
             services.AddSwagger(Configuration);
             services.AddEntityMapper();
@@ -32,6 +33,7 @@ namespace Shell.API
         {
             if (env.IsDevelopment())
             {
+                app.UseDeveloperExceptionPage();
                 app.UseSwagger();
                 app.UseSwaggerUI(setup =>
                 {
@@ -47,7 +49,6 @@ namespace Shell.API
 
             app.UseEndpoints(endpoints =>
             {
-                endpoints.MapDefaultControllerRoute();
                 endpoints.MapControllers();
             });
         }

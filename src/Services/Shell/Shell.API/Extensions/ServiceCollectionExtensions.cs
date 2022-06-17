@@ -7,6 +7,7 @@ using Shell.API.Data;
 using Shell.API.Data.Repositories;
 using Shell.API.Filters;
 using Shell.API.Models;
+using Shell.API.Models.Entities;
 using Shell.API.Services;
 using Shell.API.Services.Implementations;
 using System;
@@ -75,7 +76,6 @@ namespace Shell.API.Extensions
 
             services.Configure<MongoDbSettings>(configuration.GetSection("MongoDbSettings"));
             services.AddSingleton<IMongoClient>(new MongoClient(connectionString));
-            services.AddSingleton<IDbRepository<Models.Entities.Row>, RowRepository>();
         }
 
         public static void AddEntityMapper(this IServiceCollection services)
@@ -83,9 +83,16 @@ namespace Shell.API.Extensions
             services.AddAutoMapper(Assembly.GetExecutingAssembly());
         }
 
+        public static void AddRepositories(this IServiceCollection services)
+        {
+            services.AddSingleton<IDbRepository<Row>, RowRepository>();
+            services.AddSingleton<IDbRepository<PageMetaData>, PageRepository>();
+        }
+
         public static void AddServices(this IServiceCollection services)
         {
             services.AddSingleton<IRowService, RowService>();
+            services.AddSingleton<IPageService, PageService>();
         }
     }
 }

@@ -1,6 +1,4 @@
 ﻿using AutoMapper;
-using DbEntites = Shell.API.Data.Entities;
-using Entities = Shell.API.Models.Entities;
 
 namespace Shell.API.Profiles
 {
@@ -8,7 +6,8 @@ namespace Shell.API.Profiles
     {
         public BackendProfile()
         {
-            CreateMap<DbEntites.Row, Entities.Row>().ReverseMap();
+            CreateMap<Data.Entities.Row, Models.Entities.Row>().ReverseMap();
+            CreateMap<Data.Entities.PageInfo, Models.Entities.PageMetaData>().ReverseMap();
         }
     }
 }

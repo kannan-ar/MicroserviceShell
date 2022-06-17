@@ -15,10 +15,12 @@ namespace Shell.API.Data.Repositories
             _database = client.GetDatabase(mongoDbSettings.Value.DbName);
         }
 
+        protected abstract string CollectionName { get; }
+
         private IMongoCollection<T> GetCollection<T>()
             where T : class
         {
-            return _database.GetCollection<T>("rows");
+            return _database.GetCollection<T>(CollectionName);
         }
         public IMongoQueryable<T> GetQueryable<T>()
             where T : class
