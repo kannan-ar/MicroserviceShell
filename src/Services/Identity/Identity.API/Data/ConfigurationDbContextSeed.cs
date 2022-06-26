@@ -36,7 +36,7 @@ namespace Identity.API.Data
 
                 context.ApiResources.Add(new ApiResource("shellappresource", "Shell App")
                 {
-                    Scopes = { "shellappscope" }
+                    Scopes = { "shellappscope", "mfscope" }
                 }.ToEntity());
 
                 await context.SaveChangesAsync();
