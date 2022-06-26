@@ -1,4 +1,5 @@
-﻿using IdentityServer4.EntityFramework.DbContexts;
+﻿using IdentityModel;
+using IdentityServer4.EntityFramework.DbContexts;
 using IdentityServer4.EntityFramework.Mappers;
 using IdentityServer4.Models;
 using System.Collections.Generic;
@@ -22,7 +23,7 @@ namespace Identity.API.Data
             if (!context.ApiScopes.Any())
             {
                 context.ApiScopes.Add(new ApiScope("mfscope", "Microfrontend API").ToEntity());
-                context.ApiScopes.Add(new ApiScope("shellapp", "shellapp").ToEntity());
+                context.ApiScopes.Add(new ApiScope("shellappscope", "Shell App").ToEntity());
                 await context.SaveChangesAsync();
             }
 
@@ -33,7 +34,10 @@ namespace Identity.API.Data
                     Scopes = { "mfscope" }
                 }.ToEntity());
 
-                context.ApiResources.Add(new ApiResource("shellapp", "Shell App").ToEntity());
+                context.ApiResources.Add(new ApiResource("shellappresource", "Shell App")
+                {
+                    Scopes = { "shellappscope" }
+                }.ToEntity());
 
                 await context.SaveChangesAsync();
             }
@@ -61,7 +65,7 @@ namespace Identity.API.Data
                     {
                         "openid",
                         "profile",
-                        "shellapp"
+                        "shellappscope"
                     },
                     RequirePkce = true,
                     AllowPlainTextPkce = false

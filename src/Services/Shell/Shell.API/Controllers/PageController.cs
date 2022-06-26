@@ -3,11 +3,8 @@ using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
-using Shell.API.Models.DTOs;
-using Shell.API.Models.Entities;
-using Shell.API.Services;
+using Shell.API.Core.Services;
 using System.Collections.Generic;
-using System.Linq;
 using System.Threading.Tasks;
 
 namespace Shell.API.Controllers
@@ -26,16 +23,27 @@ namespace Shell.API.Controllers
             _pageService = pageService;
         }
 
-        [ProducesResponseType(StatusCodes.Status200OK)]
-        [ProducesResponseType(StatusCodes.Status500InternalServerError)]
         [HttpGet]
+        [ProducesResponseType(StatusCodes.Status200OK)]
+        [ProducesResponseType(StatusCodes.Status401Unauthorized)]
+        [ProducesResponseType(StatusCodes.Status500InternalServerError)]
         public async Task<ActionResult<IEnumerable<Models.DTOs.PageMetaData>>> Get()
         {
             return Ok(_mapper.Map<IEnumerable<Models.DTOs.PageMetaData>>(await _pageService.GetAllAsync().ConfigureAwait(false)));
         }
 
+        [HttpGet("IsExists/{pageName}")]
+        [ProducesResponseType(StatusCodes.Status200OK)]
+        [ProducesResponseType(StatusCodes.Status401Unauthorized)]
+        [ProducesResponseType(StatusCodes.Status500InternalServerError)]
+        public async Task<ActionResult<IEnumerable<Models.DTOs.PageMetaData>>> Get(string pageName)
+        {
+            return Ok(await _pageService.IsPageExists(pageName));
+        }
+
         [HttpPost]
         [ProducesResponseType(StatusCodes.Status201Created)]
+        [ProducesResponseType(StatusCodes.Status401Unauthorized)]
         [ProducesResponseType(StatusCodes.Status500InternalServerError)]
         public async Task<IActionResult> Post(Models.DTOs.PageMetaData metaData)
         {

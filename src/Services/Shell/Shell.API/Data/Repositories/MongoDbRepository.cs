@@ -1,43 +1,55 @@
-﻿using Microsoft.Extensions.Options;
+﻿using AutoMapper;
+using Microsoft.Extensions.Options;
 using MongoDB.Driver;
 using MongoDB.Driver.Linq;
 using Shell.API.Models;
+using System.Collections.Generic;
 using System.Threading.Tasks;
 
 namespace Shell.API.Data.Repositories
 {
-    public abstract class MongoDbRepository
+    public abstract class MongoDbRepository<TModel, TData>
+        where TModel : class
     {
         private readonly IMongoDatabase _database;
+        private readonly IMapper _mapper;
 
-        public MongoDbRepository(IMongoClient client, IOptions<MongoDbSettings> mongoDbSettings)
+        protected MongoDbRepository(IMapper mapper, IMongoClient client, IOptions<MongoDbSettings> mongoDbSettings)
         {
+            _mapper = mapper;
             _database = client.GetDatabase(mongoDbSettings.Value.DbName);
         }
 
         protected abstract string CollectionName { get; }
 
-        private IMongoCollection<T> GetCollection<T>()
-            where T : class
+        private IMongoCollection<TData> GetCollection()
         {
-            return _database.GetCollection<T>(CollectionName);
+            return _database.GetCollection<TData>(CollectionName);
         }
-        public IMongoQueryable<T> GetQueryable<T>()
-            where T : class
+       
+        public async Task InsertAsync(TModel entity)
         {
-            return GetCollection<T>().AsQueryable();
-        }
-
-        public async Task InsertAsync<T>(T entity)
-            where T : class
-        {
-            await GetCollection<T>().InsertOneAsync(entity);
+            await GetCollection().InsertOneAsync(_mapper.Map<TModel, TData>(entity));
         }
 
-        public UpdateResult Update<T>(FilterDefinition<T> filter, UpdateDefinition<T> entity)
-            where T : class
+        public UpdateResult Update(FilterDefinition<TData> filter, UpdateDefinition<TData> entity)
         {
-            return GetCollection<T>().UpdateOne(filter, entity);
+            return GetCollection().UpdateOne(filter, entity);
+        }
+
+        public async Task<TModel> GetOneAsync(FilterDefinition<TData> filter)
+        {
+            return _mapper.Map<TModel>(await GetCollection().Find(filter).FirstOrDefaultAsync());
+        }
+
+        public async Task<IEnumerable<TModel>> GetAsync(FilterDefinition<TData> filter)
+        {
+            return _mapper.Map<IEnumerable<TModel>>(await GetCollection().Find(filter).ToListAsync());
+        }
+
+        public async Task<IEnumerable<TModel>> GetAllAsync()
+        {
+            return _mapper.Map<IEnumerable<TModel>>(await GetCollection().AsQueryable().ToListAsync());
         }
     }
 }

@@ -3,12 +3,11 @@ using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.OpenApi.Models;
 using MongoDB.Driver;
-using Shell.API.Data;
+using Shell.API.Core.Repositories;
+using Shell.API.Core.Services;
 using Shell.API.Data.Repositories;
 using Shell.API.Filters;
 using Shell.API.Models;
-using Shell.API.Models.Entities;
-using Shell.API.Services;
 using Shell.API.Services.Implementations;
 using System;
 using System.Collections.Generic;
@@ -85,8 +84,8 @@ namespace Shell.API.Extensions
 
         public static void AddRepositories(this IServiceCollection services)
         {
-            services.AddSingleton<IDbRepository<Row>, RowRepository>();
-            services.AddSingleton<IDbRepository<PageMetaData>, PageRepository>();
+            services.AddSingleton<IRowRepository, RowRepository>();
+            services.AddSingleton<IPageRepository, PageRepository>();
         }
 
         public static void AddServices(this IServiceCollection services)

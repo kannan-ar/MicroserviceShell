@@ -1,35 +1,32 @@
 ﻿using AutoMapper;
 using Microsoft.Extensions.Options;
 using MongoDB.Driver;
+using Shell.API.Core.Repositories;
 using Shell.API.Data.Entities;
 using Shell.API.Models;
 using Shell.API.Models.Entities;
-using System;
 using System.Collections.Generic;
 using System.Threading.Tasks;
 
 namespace Shell.API.Data.Repositories
 {
-    public class PageRepository : MongoDbRepository, IDbRepository<PageMetaData>
+    public class PageRepository : MongoDbRepository<PageMetaData, PageInfo>, IPageRepository
     {
-        private readonly IMapper _mapper;
-
         public PageRepository(IMongoClient client, IMapper mapper, IOptions<MongoDbSettings> mongoDbSettings)
-            : base(client, mongoDbSettings)
+            : base(mapper, client, mongoDbSettings)
         {
-            _mapper = mapper;
         }
 
         protected override string CollectionName => "pages";
 
-        public async Task Add(PageMetaData entity)
+        public async Task<PageMetaData> GetPage(string pageName)
         {
-            await InsertAsync(_mapper.Map<PageInfo>(entity));
+            return await GetOneAsync(Builders<PageInfo>.Filter.Eq(x => x.PageName, pageName));
         }
 
-        public async Task<IEnumerable<PageMetaData>> GetAllAsync()
+        public async Task<IEnumerable<PageMetaData>> GetPagesAsync()
         {
-            return _mapper.Map<IEnumerable<PageMetaData>>(await GetQueryable<PageInfo>().ToListAsync().ConfigureAwait(false));
+            return await GetAllAsync();
         }
     }
 }

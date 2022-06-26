@@ -3,6 +3,7 @@ using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Diagnostics;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Logging;
+using ShellApp.Route;
 
 namespace ShellApp.Controllers
 {
@@ -17,6 +18,8 @@ namespace ShellApp.Controllers
 
         public IActionResult Index()
         {
+            var page = HttpContext.Items[RouteConstants.Page];
+
             return View();
         }
 

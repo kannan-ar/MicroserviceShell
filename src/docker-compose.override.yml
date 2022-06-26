@@ -29,7 +29,7 @@ services:
       - MongoDbSettings__ConnectionString=mongodb://shell.data:27017
       - MongoDbSettings__DbName=shell
       - IdentityUrl=http://identity.api
-      - IdentityAudience=mfapiresource
+      - IdentityAudience=shellappresource
       - OrchestratorType=${ORCHESTRATOR_TYPE}
     ports:
       - "8002:80"
@@ -47,6 +47,8 @@ services:
       - ASPNETCORE_ENVIRONMENT=Development
       - IdentityUrl=http://${SHELL_EXTERNAL_DNS_NAME_OR_IP}:8001
       - CallBackUrl=http://${SHELL_EXTERNAL_DNS_NAME_OR_IP}:8003
+      - Scope=shellappscope
+      - PageServiceUrl=http://${SHELL_EXTERNAL_DNS_NAME_OR_IP}:8002
     ports:
       - "8003:80"
     depends_on:
