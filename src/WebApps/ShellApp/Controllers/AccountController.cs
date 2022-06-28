@@ -12,14 +12,6 @@ namespace ShellApp.Controllers
         [Authorize]
         public async Task<IActionResult> SignIn(string returnUrl)
         {
-            //var user = User as ClaimsPrincipal;
-            //var token = await HttpContext.GetTokenAsync("access_token");
-
-            //if (token != null)
-            //{
-            //    ViewData["access_token"] = token;
-            //}
-
             return RedirectToAction(nameof(ShellController.Index), "Shell");
         }
 

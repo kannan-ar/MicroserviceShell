@@ -1,7 +1,16 @@
-﻿namespace Shell.API.Data.Entities
+﻿using MongoDB.Bson;
+using MongoDB.Bson.Serialization.Attributes;
+using System.Collections.Generic;
+
+namespace Shell.API.Data.Entities
 {
     public class Row
     {
+        [BsonId]
+        [BsonRepresentation(BsonType.ObjectId)]
+        public string Id { get; set; }
         public int RowIndex { get; set; }
+        public string PageName { get; set; }
+        public ICollection<Column> Columns { get; set; }
     }
 }

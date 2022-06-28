@@ -6,6 +6,6 @@ namespace Shell.API.Core.Repositories
     public interface IDbRepository<T>
     {
         Task InsertAsync(T entity);
-        Task<IEnumerable<T>> GetAllAsync();
+        Task<IEnumerable<T>> GetAsync();
     }
 }

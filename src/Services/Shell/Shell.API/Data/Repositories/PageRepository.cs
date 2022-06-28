@@ -7,6 +7,7 @@ using Shell.API.Models;
 using Shell.API.Models.Entities;
 using System.Collections.Generic;
 using System.Threading.Tasks;
+using System.Linq;
 
 namespace Shell.API.Data.Repositories
 {
@@ -21,12 +22,12 @@ namespace Shell.API.Data.Repositories
 
         public async Task<PageMetaData> GetPage(string pageName)
         {
-            return await GetOneAsync(Builders<PageInfo>.Filter.Eq(x => x.PageName, pageName));
+            return await GetFirstOrDefaultAsync(Builders<PageInfo>.Filter.Eq(x => x.PageName, pageName));
         }
 
         public async Task<IEnumerable<PageMetaData>> GetPagesAsync()
         {
-            return await GetAllAsync();
+            return await GetAsync();
         }
     }
 }

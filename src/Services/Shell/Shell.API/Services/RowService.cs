@@ -15,12 +15,12 @@ namespace Shell.API.Services.Implementations
             _repository = repository;
         }
 
-        public async Task<IEnumerable<Row>> GetAllAsync()
+        public async Task<IEnumerable<Row>> GetRowsByPageAsync(string pageName)
         {
-            return (await _repository.GetAllAsync());
+            return await _repository.GetRowsByPageAsync(pageName);
         }
 
-        public async Task AddRow(Row row)
+        public async Task InsertRow(Row row)
         {
             await _repository.InsertAsync(row);
         }

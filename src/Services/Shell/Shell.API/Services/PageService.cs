@@ -25,7 +25,7 @@ namespace Shell.API.Services.Implementations
 
         public async Task<IEnumerable<PageMetaData>> GetAllAsync()
         {
-            return await _repository.GetAllAsync();
+            return await _repository.GetAsync();
         }
 
         public async Task<bool> IsPageExists(string page)

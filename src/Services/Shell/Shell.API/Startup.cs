@@ -4,6 +4,7 @@ using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 using Shell.API.Extensions;
+using Shell.API.Middlewares;
 
 namespace Shell.API
 {
@@ -41,6 +42,10 @@ namespace Shell.API
                     setup.OAuthClientId("mfswaggerui");
                     setup.OAuthAppName("Swagger UI for Microfrontend");
                 });
+            }
+            else
+            {
+                app.UseMiddleware<ExceptionMiddleware>();
             }
 
             app.UseRouting();

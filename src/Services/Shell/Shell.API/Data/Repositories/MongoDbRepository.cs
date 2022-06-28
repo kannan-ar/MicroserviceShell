@@ -32,14 +32,9 @@ namespace Shell.API.Data.Repositories
             await GetCollection().InsertOneAsync(_mapper.Map<TModel, TData>(entity));
         }
 
-        public UpdateResult Update(FilterDefinition<TData> filter, UpdateDefinition<TData> entity)
+        public async Task<IEnumerable<TModel>> GetAsync()
         {
-            return GetCollection().UpdateOne(filter, entity);
-        }
-
-        public async Task<TModel> GetOneAsync(FilterDefinition<TData> filter)
-        {
-            return _mapper.Map<TModel>(await GetCollection().Find(filter).FirstOrDefaultAsync());
+            return _mapper.Map<IEnumerable<TModel>>(await GetCollection().AsQueryable().ToListAsync());
         }
 
         public async Task<IEnumerable<TModel>> GetAsync(FilterDefinition<TData> filter)
@@ -47,9 +42,20 @@ namespace Shell.API.Data.Repositories
             return _mapper.Map<IEnumerable<TModel>>(await GetCollection().Find(filter).ToListAsync());
         }
 
-        public async Task<IEnumerable<TModel>> GetAllAsync()
+        public async Task<TModel> GetFirstOrDefaultAsync(FilterDefinition<TData> filter)
         {
-            return _mapper.Map<IEnumerable<TModel>>(await GetCollection().AsQueryable().ToListAsync());
+            return _mapper.Map<TModel>(await GetCollection().Find(filter).FirstOrDefaultAsync());
         }
+
+        public async Task<TData> UpdateAsync(FilterDefinition<TData> filter, UpdateDefinition<TData> entity)
+        {
+            return await GetCollection().FindOneAndUpdateAsync(filter, entity);
+        }
+
+        public async Task DeleteAsync(FilterDefinition<TData> filter)
+        {
+            await GetCollection().FindOneAndDeleteAsync(filter);
+        }
+
     }
 }

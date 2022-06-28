@@ -8,8 +8,8 @@
         "identity.data": "StartWithoutDebugging",
         "kibana": "StartWithoutDebugging",
         "portainer": "StartWithoutDebugging",
-        "shell.api": "StartWithoutDebugging",
-        "shell.app": "StartDebugging",
+        "shell.api": "StartDebugging",
+        "shell.app": "StartWithoutDebugging",
         "shell.data": "StartWithoutDebugging"
       },
       "commandVersion": "1.0"

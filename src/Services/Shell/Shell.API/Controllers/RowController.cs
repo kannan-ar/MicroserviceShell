@@ -24,20 +24,27 @@ namespace Shell.API.Controllers
         }
 
         [ProducesResponseType(StatusCodes.Status200OK)]
+        [ProducesResponseType(StatusCodes.Status401Unauthorized)]
         [ProducesResponseType(StatusCodes.Status500InternalServerError)]
-        [HttpGet]
-        public async Task<ActionResult<IEnumerable<Models.DTOs.Row>>> Get()
+        [HttpGet("{pageName}")]
+        public async Task<ActionResult<IEnumerable<Models.DTOs.Row>>> Get(string pageName)
         {
-            return Ok(_mapper.Map<IEnumerable<Models.DTOs.Row>>(await _rowService.GetAllAsync()));
+            return Ok(_mapper.Map<IEnumerable<Models.DTOs.Row>>(await _rowService.GetRowsByPageAsync(pageName)));
         }
 
         [HttpPost]
         [ProducesResponseType(StatusCodes.Status201Created)]
+        [ProducesResponseType(StatusCodes.Status401Unauthorized)]
         [ProducesResponseType(StatusCodes.Status500InternalServerError)]
         public async Task<IActionResult> Post(Models.DTOs.Row row)
         {
-            await _rowService.AddRow(_mapper.Map<Models.Entities.Row>(row));
-            return CreatedAtAction(nameof(Get), new { index = row.RowIndex });
+            await _rowService.InsertRow(_mapper.Map<Models.Entities.Row>(row));
+            return CreatedAtAction(nameof(Get), new { pageName = row.PageName });
+        }
+
+        public async Task<IActionResult> Put(string pageName, int rowIndex, Models.DTOs.Row row)
+        {
+            return Ok();
         }
     }
 }
