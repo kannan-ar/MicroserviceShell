@@ -24,14 +24,29 @@ namespace Shell.API.Data.Repositories
             return await GetAsync(Builders<Entities.Row>.Filter.Eq(x => x.PageName, pageName));
         }
 
-        public async Task UpdateRow(string pageName, int rowIndex, Row row)
+        public async Task<Row> UpdateRowAsync(string pageName, int rowIndex, Row row)
         {
-            await UpdateAsync(
+            return await UpdateAsync(
                 Builders<Entities.Row>.Filter.And(
                     Builders<Entities.Row>.Filter.Eq(x => x.PageName, pageName),
                     Builders<Entities.Row>.Filter.Eq(x => x.RowIndex, rowIndex)),
                 Builders<Entities.Row>.Update
                     .Set(p => p.RowIndex, row.RowIndex));
+        }
+
+        public async Task InsertOrUpdateRowAsync(string pageName, int rowIndex, Row row)
+        {
+            await InsertOrReplaceAsync(
+               Builders<Entities.Row>.Filter.And(
+                   Builders<Entities.Row>.Filter.Eq(x => x.PageName, pageName),
+                   Builders<Entities.Row>.Filter.Eq(x => x.RowIndex, rowIndex)), row);
+        }
+
+        public async Task DeleteRow(string pageName, int rowIndex)
+        {
+            await DeleteAsync(Builders<Entities.Row>.Filter.And(
+                    Builders<Entities.Row>.Filter.Eq(x => x.PageName, pageName),
+                    Builders<Entities.Row>.Filter.Eq(x => x.RowIndex, rowIndex)));
         }
     }
 }

@@ -7,6 +7,7 @@ namespace Shell.API.Data.Entities
     public class Row
     {
         [BsonId]
+        [BsonIgnoreIfDefault]
         [BsonRepresentation(BsonType.ObjectId)]
         public string Id { get; set; }
         public int RowIndex { get; set; }

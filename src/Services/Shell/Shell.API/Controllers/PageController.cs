@@ -29,14 +29,23 @@ namespace Shell.API.Controllers
         [ProducesResponseType(StatusCodes.Status500InternalServerError)]
         public async Task<ActionResult<IEnumerable<Models.DTOs.PageMetaData>>> Get()
         {
-            return Ok(_mapper.Map<IEnumerable<Models.DTOs.PageMetaData>>(await _pageService.GetAllAsync().ConfigureAwait(false)));
+            return Ok(_mapper.Map<IEnumerable<Models.DTOs.PageMetaData>>(await _pageService.GetPagesAsync().ConfigureAwait(false)));
         }
 
-        [HttpGet("IsExists/{pageName}")]
+        [HttpGet("{pageName}")]
         [ProducesResponseType(StatusCodes.Status200OK)]
         [ProducesResponseType(StatusCodes.Status401Unauthorized)]
         [ProducesResponseType(StatusCodes.Status500InternalServerError)]
         public async Task<ActionResult<IEnumerable<Models.DTOs.PageMetaData>>> Get(string pageName)
+        {
+            return Ok(_mapper.Map<Models.DTOs.PageMetaData>(await _pageService.GetPageAsync(pageName).ConfigureAwait(false)));
+        }
+
+        [HttpGet("IsExists/{pageName}", Name = "IsExists")]
+        [ProducesResponseType(StatusCodes.Status200OK)]
+        [ProducesResponseType(StatusCodes.Status401Unauthorized)]
+        [ProducesResponseType(StatusCodes.Status500InternalServerError)]
+        public async Task<ActionResult<IEnumerable<Models.DTOs.PageMetaData>>> IsExists(string pageName)
         {
             return Ok(await _pageService.IsPageExists(pageName));
         }
@@ -47,8 +56,38 @@ namespace Shell.API.Controllers
         [ProducesResponseType(StatusCodes.Status500InternalServerError)]
         public async Task<IActionResult> Post(Models.DTOs.PageMetaData metaData)
         {
-            await _pageService.AddPage(_mapper.Map<Models.Entities.PageMetaData>(metaData));
-            return CreatedAtAction(nameof(Get), new { pageName = metaData.PageName });
+            await _pageService.InsertPage(_mapper.Map<Models.Entities.PageMetaData>(metaData));
+            return CreatedAtAction(nameof(Get), new { pageName = metaData.PageName }, metaData);
+        }
+
+        [HttpPut("{pageName}")]
+        [ProducesResponseType(StatusCodes.Status204NoContent)]
+        [ProducesResponseType(StatusCodes.Status401Unauthorized)]
+        [ProducesResponseType(StatusCodes.Status500InternalServerError)]
+        public async Task<IActionResult> Put(string pageName, Models.DTOs.PageMetaData metaData)
+        {
+            await _pageService.UpsertPage(pageName, _mapper.Map<Models.Entities.PageMetaData>(metaData));
+            return NoContent();
+        }
+
+        [HttpPatch("{pageName}")]
+        [ProducesResponseType(StatusCodes.Status204NoContent)]
+        [ProducesResponseType(StatusCodes.Status401Unauthorized)]
+        [ProducesResponseType(StatusCodes.Status500InternalServerError)]
+        public async Task<IActionResult> Patch(string pageName, Models.DTOs.PageMetaData metaData)
+        {
+            await _pageService.UpdatePage(pageName, _mapper.Map<Models.Entities.PageMetaData>(metaData));
+            return NoContent();
+        }
+
+        [HttpDelete("{pageName}")]
+        [ProducesResponseType(StatusCodes.Status204NoContent)]
+        [ProducesResponseType(StatusCodes.Status401Unauthorized)]
+        [ProducesResponseType(StatusCodes.Status500InternalServerError)]
+        public async Task<IActionResult> Delete(string pageName)
+        {
+            await _pageService.DeletePage(pageName);
+            return NoContent();
         }
     }
 }

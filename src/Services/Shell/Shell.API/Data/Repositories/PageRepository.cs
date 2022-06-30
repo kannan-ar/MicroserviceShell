@@ -29,5 +29,26 @@ namespace Shell.API.Data.Repositories
         {
             return await GetAsync();
         }
+
+        public async Task InsertOrUpdatePageAsync(string pageName, PageMetaData page)
+        {
+            await InsertOrReplaceAsync(Builders<PageInfo>.Filter.Eq(x => x.PageName, pageName), page);
+        }
+
+        public async Task<PageMetaData> UpdatePageAsync(string pageName, PageMetaData page)
+        {
+            return await UpdateAsync(
+                Builders<PageInfo>.Filter.Eq(x => x.PageName, pageName),
+                Builders<PageInfo>.Update
+                    .Set(p => p.Header, page.Header)
+                    .Set(p => p.Path, page.Path)
+                    .Set(p => p.Footer, page.Footer));
+        }
+
+        public async Task DeletePageAsync(string pageName)
+        {
+            await DeleteAsync(Builders<PageInfo>.Filter.Eq(x => x.PageName, pageName));
+        }
+
     }
 }

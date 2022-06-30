@@ -6,6 +6,7 @@ namespace Shell.API.Data.Entities
     public class PageInfo
     {
         [BsonId]
+        [BsonIgnoreIfDefault]
         [BsonRepresentation(BsonType.ObjectId)]
         public string Id { get; set; }
         public string PageName { get; set; }

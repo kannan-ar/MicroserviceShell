@@ -47,15 +47,23 @@ namespace Shell.API.Data.Repositories
             return _mapper.Map<TModel>(await GetCollection().Find(filter).FirstOrDefaultAsync());
         }
 
-        public async Task<TData> UpdateAsync(FilterDefinition<TData> filter, UpdateDefinition<TData> entity)
+        public async Task InsertOrReplaceAsync(FilterDefinition<TData> filter, TModel data)
         {
-            return await GetCollection().FindOneAndUpdateAsync(filter, entity);
+            await GetCollection().ReplaceOneAsync(filter, _mapper.Map<TModel, TData>(data), new ReplaceOptions
+            {
+                IsUpsert = true,
+            });
         }
+
+        public async Task<TModel> UpdateAsync(FilterDefinition<TData> filter, UpdateDefinition<TData> entity)
+        {
+            return _mapper.Map<TModel>(await GetCollection().FindOneAndUpdateAsync(filter, entity));
+        }
+
 
         public async Task DeleteAsync(FilterDefinition<TData> filter)
         {
-            await GetCollection().FindOneAndDeleteAsync(filter);
+            await GetCollection().DeleteManyAsync(filter);
         }
-
     }
 }

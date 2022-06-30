@@ -8,5 +8,8 @@ namespace Shell.API.Core.Services
     {
         Task<IEnumerable<Row>> GetRowsByPageAsync(string pageName);
         Task InsertRow(Row row);
+        Task<Row> UpdateRow(string pageName, int rowIndex, Row row);
+        Task UpsertRow(string pageName, int rowIndex, Row row);
+        Task DeleteRow(string pageName, int rowIndex);
     }
 }
