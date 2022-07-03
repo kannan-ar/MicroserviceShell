@@ -6,8 +6,9 @@ using Shell.API.Models;
 using System.Collections.Generic;
 using System.Threading.Tasks;
 
-namespace Shell.API.Data.Repositories
+namespace Shell.API.Infrastructure.Repositories
 {
+    //https://www.thecodebuzz.com/mongodb-distributed-transaction-acid-csharp-driver-aspnetcore/
     public abstract class MongoDbRepository<TModel, TData>
         where TModel : class
     {
@@ -47,12 +48,14 @@ namespace Shell.API.Data.Repositories
             return _mapper.Map<TModel>(await GetCollection().Find(filter).FirstOrDefaultAsync());
         }
 
-        public async Task InsertOrReplaceAsync(FilterDefinition<TData> filter, TModel data)
+        public async Task<TModel> InsertOrReplaceAsync(FilterDefinition<TData> filter, TModel data)
         {
             await GetCollection().ReplaceOneAsync(filter, _mapper.Map<TModel, TData>(data), new ReplaceOptions
             {
                 IsUpsert = true,
             });
+
+            return data;
         }
 
         public async Task<TModel> UpdateAsync(FilterDefinition<TData> filter, UpdateDefinition<TData> entity)

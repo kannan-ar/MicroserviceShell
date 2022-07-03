@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using System.Threading.Tasks;
 
-namespace Shell.API.Core.Repositories
+namespace Shell.API.Domain.Repositories
 {
     public interface IRowRepository : IDbRepository<Row>
     {
@@ -10,5 +10,6 @@ namespace Shell.API.Core.Repositories
         Task<Row> UpdateRowAsync(string pageName, int rowIndex, Row row);
         Task InsertOrUpdateRowAsync(string pageName, int rowIndex, Row row);
         Task DeleteRow(string pageName, int rowIndex);
+        Task<Row> ChangePageNameAsync(string oldPageName, string newPageName);
     }
 }

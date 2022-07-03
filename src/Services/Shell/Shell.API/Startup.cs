@@ -1,3 +1,4 @@
+using MediatR;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.Extensions.Configuration;
@@ -26,6 +27,7 @@ namespace Shell.API
             services.AddIdentityAuthentication(Configuration);
             services.AddSwagger(Configuration);
             services.AddEntityMapper();
+            services.AddMediatR(typeof(Startup).Assembly);
             services.AddServices();
         }
 

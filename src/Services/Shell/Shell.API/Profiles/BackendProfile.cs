@@ -6,9 +6,9 @@ namespace Shell.API.Profiles
     {
         public BackendProfile()
         {
-            CreateMap<Data.Entities.Column, Models.Entities.Column>().ReverseMap();
-            CreateMap<Data.Entities.Row, Models.Entities.Row>().ReverseMap();
-            CreateMap<Data.Entities.PageInfo, Models.Entities.PageMetaData>().ReverseMap();
+            CreateMap<Infrastructure.Entities.Column, Models.Entities.Column>().ReverseMap();
+            CreateMap<Infrastructure.Entities.Row, Models.Entities.Row>().ReverseMap();
+            CreateMap<Infrastructure.Entities.PageInfo, Models.Entities.PageMetaData>().ReverseMap();
         }
     }
 }

@@ -3,7 +3,7 @@ using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
-using Shell.API.Core.Services;
+using Shell.API.Domain.Services;
 using System.Collections.Generic;
 using System.Threading.Tasks;
 

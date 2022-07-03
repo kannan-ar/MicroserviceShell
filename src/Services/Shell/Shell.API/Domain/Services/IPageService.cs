@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using System.Threading.Tasks;
 
-namespace Shell.API.Core.Services
+namespace Shell.API.Domain.Services
 {
     public interface IPageService
     {

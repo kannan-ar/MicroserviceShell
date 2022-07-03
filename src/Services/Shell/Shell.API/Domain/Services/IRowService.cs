@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using System.Threading.Tasks;
 
-namespace Shell.API.Core.Services
+namespace Shell.API.Domain.Services
 {
     public interface IRowService
     {
@@ -11,5 +11,6 @@ namespace Shell.API.Core.Services
         Task<Row> UpdateRow(string pageName, int rowIndex, Row row);
         Task UpsertRow(string pageName, int rowIndex, Row row);
         Task DeleteRow(string pageName, int rowIndex);
+        Task<Row> ChangePageNameAsync(string oldPageName, string newPageName);
     }
 }

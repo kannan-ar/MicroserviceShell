@@ -1,14 +1,13 @@
 ﻿using AutoMapper;
 using Microsoft.Extensions.Options;
 using MongoDB.Driver;
-using Shell.API.Core.Repositories;
+using Shell.API.Domain.Repositories;
 using Shell.API.Models;
 using Shell.API.Models.Entities;
-using System;
 using System.Collections.Generic;
 using System.Threading.Tasks;
 
-namespace Shell.API.Data.Repositories
+namespace Shell.API.Infrastructure.Repositories
 {
     public class RowRepository : MongoDbRepository<Row, Entities.Row>, IRowRepository
     {
@@ -47,6 +46,13 @@ namespace Shell.API.Data.Repositories
             await DeleteAsync(Builders<Entities.Row>.Filter.And(
                     Builders<Entities.Row>.Filter.Eq(x => x.PageName, pageName),
                     Builders<Entities.Row>.Filter.Eq(x => x.RowIndex, rowIndex)));
+        }
+
+        public async Task<Row> ChangePageNameAsync(string oldPageName, string newPageName)
+        {
+            return await UpdateAsync(
+                Builders<Entities.Row>.Filter.Eq(x => x.PageName, oldPageName),
+                Builders<Entities.Row>.Update.Set(p => p.PageName, newPageName));
         }
     }
 }

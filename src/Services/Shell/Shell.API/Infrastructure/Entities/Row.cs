@@ -1,17 +1,17 @@
 ﻿using MongoDB.Bson;
 using MongoDB.Bson.Serialization.Attributes;
+using System.Collections.Generic;
 
-namespace Shell.API.Data.Entities
+namespace Shell.API.Infrastructure.Entities
 {
-    public class PageInfo
+    public class Row
     {
         [BsonId]
         [BsonIgnoreIfDefault]
         [BsonRepresentation(BsonType.ObjectId)]
         public string Id { get; set; }
+        public int RowIndex { get; set; }
         public string PageName { get; set; }
-        public string Path { get; set; }
-        public string Header { get; set; }
-        public string Footer { get; set; }
+        public ICollection<Column> Columns { get; set; }
     }
 }

@@ -1,7 +1,7 @@
 ﻿using System.Collections.Generic;
 using System.Threading.Tasks;
 
-namespace Shell.API.Core.Repositories
+namespace Shell.API.Domain.Repositories
 {
     public interface IDbRepository<T>
     {

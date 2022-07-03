@@ -1,15 +1,15 @@
 ﻿using AutoMapper;
 using Microsoft.Extensions.Options;
 using MongoDB.Driver;
-using Shell.API.Core.Repositories;
-using Shell.API.Data.Entities;
+using Shell.API.Domain.Repositories;
+using Shell.API.Infrastructure.Entities;
 using Shell.API.Models;
 using Shell.API.Models.Entities;
 using System.Collections.Generic;
 using System.Threading.Tasks;
 using System.Linq;
 
-namespace Shell.API.Data.Repositories
+namespace Shell.API.Infrastructure.Repositories
 {
     public class PageRepository : MongoDbRepository<PageMetaData, PageInfo>, IPageRepository
     {
@@ -30,9 +30,9 @@ namespace Shell.API.Data.Repositories
             return await GetAsync();
         }
 
-        public async Task InsertOrUpdatePageAsync(string pageName, PageMetaData page)
+        public async Task<PageMetaData> InsertOrUpdatePageAsync(string pageName, PageMetaData page)
         {
-            await InsertOrReplaceAsync(Builders<PageInfo>.Filter.Eq(x => x.PageName, pageName), page);
+            return await InsertOrReplaceAsync(Builders<PageInfo>.Filter.Eq(x => x.PageName, pageName), page);
         }
 
         public async Task<PageMetaData> UpdatePageAsync(string pageName, PageMetaData page)
