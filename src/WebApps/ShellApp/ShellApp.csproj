@@ -7,7 +7,13 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <None Remove="Client\src\services\bootstrap\shell-service.ts" />
+    <None Remove="Client\src\html\bootstrap\shell-service.ts" />
+    <None Remove="Client\src\models\app.config.model.ts" />
+    <None Remove="Client\src\router\router.ts" />
+    <None Remove="Client\src\services\auth.service.ts" />
+    <None Remove="Client\src\services\config.service.ts" />
+    <None Remove="Client\src\store\index.ts" />
+    <None Remove="Client\src\store\reducers\settingSlice.ts" />
   </ItemGroup>
 
   <ItemGroup>
@@ -25,7 +31,13 @@
   </ItemGroup>
 
   <ItemGroup>
-    <TypeScriptCompile Include="Client\src\services\bootstrap\shell-service.ts" />
+    <TypeScriptCompile Include="Client\src\models\app.config.model.ts" />
+    <TypeScriptCompile Include="Client\src\router\router.ts" />
+    <TypeScriptCompile Include="Client\src\services\auth.service.ts" />
+    <TypeScriptCompile Include="Client\src\services\config.service.ts" />
+    <TypeScriptCompile Include="Client\src\services\shell.service.ts" />
+    <TypeScriptCompile Include="Client\src\store\index.ts" />
+    <TypeScriptCompile Include="Client\src\store\reducers\settingSlice.ts" />
   </ItemGroup>
 
 </Project>

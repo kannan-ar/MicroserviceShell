@@ -21,6 +21,11 @@
     "webpack-cli": "^4.9.2"
   },
   "dependencies": {
+    "@reduxjs/toolkit": "^1.8.5",
+    "axios": "^0.27.2",
+    "oidc-client-ts": "^2.0.5",
+    "reflect-metadata": "^0.1.13",
+    "typedi": "^0.10.0",
     "underscore": "^1.13.2"
   }
 }

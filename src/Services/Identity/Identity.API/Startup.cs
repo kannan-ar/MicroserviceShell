@@ -36,6 +36,19 @@ namespace Identity.API
 
             services.AddAppInsights(Configuration);
 
+            services.AddCors(options =>
+            {
+                options.AddPolicy("AllowAllOrigins",
+                    builder =>
+                    {
+                        builder
+                            .AllowAnyOrigin()
+                            .SetIsOriginAllowedToAllowWildcardSubdomains()
+                            .AllowAnyHeader()
+                            .AllowAnyMethod();
+                    });
+            });
+
             services.AddDbContext<ApplicationDbContext>(options => options.UseSqlServer(connectionString,
                 sqlServerOptionsAction: sqlOptions =>
                 {
@@ -98,6 +111,7 @@ namespace Identity.API
             }
 
             app.UseStaticFiles();
+            app.UseCors("AllowAllOrigins");
             app.UseForwardedHeaders();
             app.UseCookiePolicy(new CookiePolicyOptions { MinimumSameSitePolicy = SameSiteMode.Lax });
             app.UseIdentityServer();

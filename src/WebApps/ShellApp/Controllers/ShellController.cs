@@ -38,6 +38,11 @@ namespace ShellApp.Controllers
             return RedirectToAction(nameof(Index));
         }
 
+        public IActionResult Callback()
+        {
+            return View();
+        }
+
         public IActionResult Error()
         {
             var exception = HttpContext.Features.Get<IExceptionHandlerPathFeature>();

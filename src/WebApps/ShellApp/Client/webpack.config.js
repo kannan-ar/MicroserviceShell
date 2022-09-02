@@ -1,14 +1,17 @@
 ﻿const path = require('path');
 
 module.exports = {
-    entry: './src/app.ts',
+    entry: {
+        vendor: ['axios', 'typedi'],
+        app: './src/app.ts'
+    },
     devtool: 'inline-source-map',
     output: {
         path: path.resolve(__dirname, '../wwwroot'),
-        filename: 'app.js'
+        filename: '[name].bundle.js',
     },
     resolve: {
-        extensions: [".ts", ".scss"]
+        extensions: [".js", ".ts", ".scss"]
     },
     module: {
         rules: [
@@ -27,5 +30,5 @@ module.exports = {
             }
         ]
     },
-    mode: 'development',
+    mode: 'development'
 }

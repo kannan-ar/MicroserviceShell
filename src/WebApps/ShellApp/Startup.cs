@@ -5,7 +5,6 @@ using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using ShellApp.Core.Services;
 using ShellApp.Extensions;
-using ShellApp.Models;
 using ShellApp.Route;
 
 namespace ShellApp

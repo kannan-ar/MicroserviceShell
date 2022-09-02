@@ -1,7 +1,5 @@
 ﻿using ShellApp.API;
 using ShellApp.Core.Services;
-using System;
-using System.Net.Http;
 using System.Threading.Tasks;
 
 namespace ShellApp.Services
