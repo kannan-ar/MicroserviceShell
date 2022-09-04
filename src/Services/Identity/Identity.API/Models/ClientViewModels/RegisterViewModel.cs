@@ -26,6 +26,10 @@ namespace Identity.API.Models.ClientViewModels
         [Required]
         public string AllowedScopesString { get; set; }
 
+        public bool RequireClientSecret { get; set; }
+
+        public string AllowedCorsOrigin { get; set; }
+
         [IgnoreMap]
         public ICollection<string> RedirectUris
         {
@@ -44,6 +48,15 @@ namespace Identity.API.Models.ClientViewModels
             get
             {
                 return PostLogoutRedirectUri.Split(',');
+            }
+        }
+
+        [IgnoreMap]
+        public ICollection<string> AllowedCorsOrigins
+        {
+            get
+            {
+                return AllowedCorsOrigin.Split(',');
             }
         }
 

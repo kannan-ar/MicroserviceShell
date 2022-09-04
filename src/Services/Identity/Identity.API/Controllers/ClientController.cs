@@ -1,6 +1,7 @@
 ﻿using AutoMapper;
 using Identity.API.Models.ClientViewModels;
 using Identity.API.Services;
+using IdentityServer4;
 using IdentityServer4.Models;
 using Microsoft.AspNetCore.Mvc;
 using System.Collections.Generic;
@@ -43,10 +44,13 @@ namespace Identity.API.Controllers
         {
             var item = mapper.Map<Client>(model);
 
-            item.ClientSecrets = new List<Secret>
+            if (item.RequireClientSecret)
             {
-                new Secret(model.ClientSecret.Sha256())
-            };
+                item.ClientSecrets = new List<Secret>
+                {
+                    new Secret(model.ClientSecret.Sha256())
+                };
+            }
 
             item.AllowedGrantTypes = GrantTypes.Code;
             item.RequirePkce = true;

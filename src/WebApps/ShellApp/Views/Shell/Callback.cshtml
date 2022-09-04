@@ -7,12 +7,5 @@
 <body>
     <script defer src="~/vendor.bundle.js"></script>
     <script defer src="~/app.bundle.js"></script>
-    <script>
-        new Oidc.UserManager({ response_mode: "query" }).signinRedirectCallback().then(function () {
-            window.location = "index.html";
-        }).catch(function (e) {
-            console.error(e);
-        });
-    </script>
 </body>
 </html>

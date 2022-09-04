@@ -2,18 +2,16 @@
 import { Container } from 'typedi';
 
 import './app.scss';
-import { htmlGeneratorFactory } from './html/html-generator-factory';
+import Router from './router';
 import ConfigService from './services/config.service';
 import store from './store';
 import { configUpdated } from './store/reducers/settingSlice';
 
 domReady(function () {
-    const app = document!.getElementById("app");
     const configService = Container.get(ConfigService);
-    const text = document.createTextNode("Loading...")
-    app!.appendChild(text);
 
     configService.loadConfiguration().then(config => {
+        console.log(config?.auth_client_id);
         store.dispatch(configUpdated({
             authority: config?.auth_authority,
             client_id: config?.auth_client_id,
@@ -21,19 +19,10 @@ domReady(function () {
             redirect_uri: config?.auth_redirect_uri
         }));
 
-        loadHtml(app);
+        const router = Container.get(Router);
+        router.loadRouter();
     });
 });
-
-const loadHtml = (app: HTMLElement | null) => {
-
-    while (app?.hasChildNodes()) {
-        app?.removeChild(app.firstChild!);
-    }
-
-    const htmlGenerator = htmlGeneratorFactory();
-    app!.appendChild(htmlGenerator.getHtml());
-}
 
 
 function domReady(fn: EventListener) {

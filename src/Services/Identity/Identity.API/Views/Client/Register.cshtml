@@ -53,6 +53,20 @@
                 <span asp-validation-for="AllowedScopesString" class="text-danger" />
             </div>
         </div>
+        <div class="row">
+            <div class="form-group col-sm-6">
+                <label asp-for="RequireClientSecret" class="control-label form-label">Require Client Secret</label>
+                <input type="checkbox" asp-for="RequireClientSecret" class="form-control form-input" />
+                <span asp-validation-for="RequireClientSecret" class="text-danger" />
+            </div>
+        </div>
+        <div class="row">
+            <div class="form-group col-sm-6">
+                <label asp-for="AllowedCorsOrigin" class="control-label form-label">Allowed CorsOrigins</label>
+                <input asp-for="AllowedCorsOrigin" class="form-control form-input" />
+                <span asp-validation-for="AllowedCorsOrigin" class="text-danger" />
+            </div>
+        </div>
         <br /><br />
         <div class="form-group">
             <button type="submit" class="btn btn-default btn-brand">&nbsp;Register&nbsp;</button>

@@ -31,6 +31,7 @@ export default class AuthService {
     }
 
     public signinRedirect() {
+        console.log(this.userManager.settings);
         this.userManager.signinRedirectCallback().then(function () {
             window.location.href = "/Shell/Index";
         }).catch(function (e) {

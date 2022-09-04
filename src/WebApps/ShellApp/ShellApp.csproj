@@ -7,9 +7,12 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <None Remove="Client\src\features\authCallbackFeature.ts" />
+    <None Remove="Client\src\features\shellFeature.ts" />
     <None Remove="Client\src\html\bootstrap\shell-service.ts" />
     <None Remove="Client\src\models\app.config.model.ts" />
-    <None Remove="Client\src\router\router.ts" />
+    <None Remove="Client\src\router\index.ts" />
+    <None Remove="Client\src\router\route.table.ts" />
     <None Remove="Client\src\services\auth.service.ts" />
     <None Remove="Client\src\services\config.service.ts" />
     <None Remove="Client\src\store\index.ts" />
@@ -31,8 +34,11 @@
   </ItemGroup>
 
   <ItemGroup>
+    <TypeScriptCompile Include="Client\src\features\authCallbackFeature.ts" />
+    <TypeScriptCompile Include="Client\src\features\shellFeature.ts" />
     <TypeScriptCompile Include="Client\src\models\app.config.model.ts" />
-    <TypeScriptCompile Include="Client\src\router\router.ts" />
+    <TypeScriptCompile Include="Client\src\router\index.ts" />
+    <TypeScriptCompile Include="Client\src\router\route.table.ts" />
     <TypeScriptCompile Include="Client\src\services\auth.service.ts" />
     <TypeScriptCompile Include="Client\src\services\config.service.ts" />
     <TypeScriptCompile Include="Client\src\services\shell.service.ts" />

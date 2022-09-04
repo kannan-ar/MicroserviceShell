@@ -36,6 +36,7 @@ let AuthService = class AuthService {
         return this.userManager.signoutRedirect();
     }
     signinRedirect() {
+        console.log(this.userManager.settings);
         this.userManager.signinRedirectCallback().then(function () {
             window.location.href = "/Shell/Index";
         }).catch(function (e) {
