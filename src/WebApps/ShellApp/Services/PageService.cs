@@ -1,5 +1,6 @@
 ﻿using ShellApp.API;
 using ShellApp.Core.Services;
+using ShellApp.Models;
 using System.Threading.Tasks;
 
 namespace ShellApp.Services
@@ -11,6 +12,11 @@ namespace ShellApp.Services
         public PageService(IPageApi pageApi)
         {
             _pageApi = pageApi;
+        }
+
+        public async Task<PageModel> Get(string pageName)
+        {
+            return await _pageApi.Get(pageName);
         }
 
         public async Task<bool> IsPageExists(string pageName)

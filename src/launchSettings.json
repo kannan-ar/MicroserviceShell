@@ -4,12 +4,12 @@
       "commandName": "DockerCompose",
       "serviceActions": {
         "elasticsearch": "StartWithoutDebugging",
-        "identity.api": "StartDebugging",
+        "identity.api": "StartWithoutDebugging",
         "identity.data": "StartWithoutDebugging",
         "kibana": "StartWithoutDebugging",
         "portainer": "StartWithoutDebugging",
         "shell.api": "StartWithoutDebugging",
-        "shell.app": "StartWithoutDebugging",
+        "shell.app": "StartDebugging",
         "shell.data": "StartWithoutDebugging"
       },
       "commandVersion": "1.0"

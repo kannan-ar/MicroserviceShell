@@ -36,16 +36,16 @@ namespace Shell.API.Controllers
         [ProducesResponseType(StatusCodes.Status200OK)]
         [ProducesResponseType(StatusCodes.Status401Unauthorized)]
         [ProducesResponseType(StatusCodes.Status500InternalServerError)]
-        public async Task<ActionResult<IEnumerable<Models.DTOs.PageMetaData>>> Get(string pageName)
+        public async Task<Models.DTOs.PageMetaData> Get(string pageName)
         {
-            return Ok(_mapper.Map<Models.DTOs.PageMetaData>(await _pageService.GetPageAsync(pageName).ConfigureAwait(false)));
+            return _mapper.Map<Models.DTOs.PageMetaData>(await _pageService.GetPageAsync(pageName).ConfigureAwait(false));
         }
 
         [HttpGet("IsExists/{pageName}", Name = "IsExists")]
         [ProducesResponseType(StatusCodes.Status200OK)]
         [ProducesResponseType(StatusCodes.Status401Unauthorized)]
         [ProducesResponseType(StatusCodes.Status500InternalServerError)]
-        public async Task<ActionResult<IEnumerable<Models.DTOs.PageMetaData>>> IsExists(string pageName)
+        public async Task<ActionResult<bool>> IsExists(string pageName)
         {
             return Ok(await _pageService.IsPageExists(pageName));
         }
