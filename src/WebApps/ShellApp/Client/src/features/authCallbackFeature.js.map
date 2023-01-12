@@ -1,1 +1,0 @@
-{"version":3,"file":"authCallbackFeature.js","sourceRoot":"","sources":["authCallbackFeature.ts"],"names":[],"mappings":";;;;;AAAA,oDAA+B;AAC/B,4EAAmD;AAEnD,MAAM,sBAAsB,GAAG,GAAG,EAAE;IAChC,MAAM,WAAW,GAAG,gBAAS,CAAC,GAAG,CAAC,sBAAW,CAAC,CAAC;IAE/C,WAAW,CAAC,cAAc,EAAE,CAAC;AACjC,CAAC,CAAA;AAED,kBAAe,sBAAsB,CAAC"}

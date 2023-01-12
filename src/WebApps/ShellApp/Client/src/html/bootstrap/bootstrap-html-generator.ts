@@ -4,8 +4,6 @@ import IHtmlGenerator from "../html-generator"
 
 export default class BootstrapHtmlGenerator implements IHtmlGenerator {
     getHtml(): HTMLElement {
-        
-
         const a = document.createElement('a');
         a.addEventListener("click", this.login, false);
         a.innerHTML = "login";
