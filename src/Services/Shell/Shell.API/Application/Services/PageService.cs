@@ -35,12 +35,12 @@ namespace Shell.API.Application.Services.Implementations
 
         public async Task<PageMetaData> GetPageAsync(string pageName)
         {
-            return await _unitOfWork.PageRepository.GetPage(pageName);
+            return await _unitOfWork.PageRepository.GetPageAsync(pageName);
         }
 
         public async Task<bool> IsPageExists(string pageName)
         {
-            return (await _unitOfWork.PageRepository.GetPage(pageName)) != null;
+            return (await _unitOfWork.PageRepository.GetPageAsync(pageName)) != null;
         }
 
         public async Task UpsertPage(string pageName, PageMetaData metaData)

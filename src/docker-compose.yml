@@ -28,10 +28,17 @@ services:
     image: ${DOCKER_REGISTRY-}shellapp
     build:
       context: .
-      dockerfile: WebApps/ShellApp/Dockerfile
+      dockerfile: WebApps/shell-app/Dockerfile
     depends_on:
       - shell.api
-      - elasticsearch
+
+  shell.app.identity:
+    image: ${DOCKER_REGISTRY-}shellapp-identity
+    build:
+      context: .
+      dockerfile: WebApps/shell-app/Dockerfile-identity
+    depends_on:
+      - identity.api
 
   portainer:
     image: portainer/portainer-ce

@@ -41,16 +41,28 @@ services:
     volumes:
       - shell_data:/data/db 
 
+  #shell.app:
+  #  container_name: shell.app
+  #  environment:
+  #    - ASPNETCORE_ENVIRONMENT=Development
+  #    - IdentityUrl=http://${SHELL_EXTERNAL_DNS_NAME_OR_IP}:8001
+  #    - CallBackUrl=http://${SHELL_EXTERNAL_DNS_NAME_OR_IP}:8003
+  #    - Scope=shellappscope
+  #    - PageServiceUrl=http://${SHELL_EXTERNAL_DNS_NAME_OR_IP}:8002
+  #  ports:
+  #    - "8003:80"
+  #  depends_on:
+  #    - identity.api
+
   shell.app:
     container_name: shell.app
-    environment:
-      - ASPNETCORE_ENVIRONMENT=Development
-      - IdentityUrl=http://${SHELL_EXTERNAL_DNS_NAME_OR_IP}:8001
-      - CallBackUrl=http://${SHELL_EXTERNAL_DNS_NAME_OR_IP}:8003
-      - Scope=shellappscope
-      - PageServiceUrl=http://${SHELL_EXTERNAL_DNS_NAME_OR_IP}:8002
     ports:
-      - "8003:80"
+      - "7000:80"
+
+  shell.app.identity:
+    container_name: shell.app.identity
+    ports:
+      - "7001:80"
     depends_on:
       - identity.api
 

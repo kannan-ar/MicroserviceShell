@@ -1,14 +1,19 @@
 ﻿using AutoMapper;
 
+using DbEntities = Shell.API.Infrastructure.Entities;
+using Entities = Shell.API.Models.Entities;
+
 namespace Shell.API.Profiles
 {
     public class BackendProfile : Profile
     {
         public BackendProfile()
         {
-            CreateMap<Infrastructure.Entities.Column, Models.Entities.Column>().ReverseMap();
-            CreateMap<Infrastructure.Entities.Row, Models.Entities.Row>().ReverseMap();
-            CreateMap<Infrastructure.Entities.PageInfo, Models.Entities.PageMetaData>().ReverseMap();
+            CreateMap<DbEntities.Column, Entities.Column>().ReverseMap();
+            CreateMap<DbEntities.Row, Entities.Row>().ReverseMap();
+            CreateMap<DbEntities.PageInfo, Entities.PageMetaData>().ReverseMap();
+
+            CreateMap<DbEntities.Component, Entities.Component>().ReverseMap();
         }
     }
 }

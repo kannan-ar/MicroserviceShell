@@ -1,0 +1,16 @@
+<div class="fixed top-0 left-0 z-1040 bg-gray-700 w-full h-full bg-opacity-30" (click)="onBackgroundClick()"
+    [ngClass]="modalClass">
+    <div class="rounded z-1050 bg-white relative top-20 mx-auto w-96 shadow"
+        (click)="onModalClick()">
+        <div *ngIf="hasTitle">
+            <h2 class="pb-1 border-b border-solid border-gray-300 p-3 bg-gray-200">{{this.title}}</h2>
+        </div>
+        <div class="p-3">
+            <ng-content></ng-content>
+        </div>
+        <div class="items-right p-3 border-t border-solid border-gray-300">
+            <button class="bg-blue-500 px-4 rounded mr-2" (click)="onOk()">OK</button>
+            <button class="bg-blue-500 px-4 rounded" (click)="onCancel()">Cancel</button>
+        </div>
+    </div>
+</div>

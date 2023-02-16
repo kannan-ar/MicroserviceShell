@@ -1,9 +1,11 @@
+using FluentValidation;
 using MediatR;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
+using Shell.API.Application.Validators;
 using Shell.API.Extensions;
 using Shell.API.Middlewares;
 
@@ -22,13 +24,17 @@ namespace Shell.API
         public void ConfigureServices(IServiceCollection services)
         {
             services.AddControllers();
+            services.AddHttpContextAccessor();
             services.AddMongoDb(Configuration);
             services.AddRepositories();
+            services.AddAuthorization(options => options.AddAuthorizationPolicies());
+
             services.AddIdentityAuthentication(Configuration);
             services.AddSwagger(Configuration);
             services.AddEntityMapper();
             services.AddMediatR(typeof(Startup).Assembly);
             services.AddServices();
+            services.AddValidatorsFromAssemblyContaining<ComponentValidator>();
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.

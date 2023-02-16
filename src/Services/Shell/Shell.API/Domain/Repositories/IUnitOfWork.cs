@@ -6,6 +6,8 @@ namespace Shell.API.Domain.Repositories
     {
         IPageRepository PageRepository { get; }
         IRowRepository RowRepository { get; }
+        IComponentRepository ComponentRepository { get; }
+
         Task BeginTransactionAsync();
         Task RollbackChangesAsync();
         Task CommitChangesAsync();

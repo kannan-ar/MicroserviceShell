@@ -20,7 +20,7 @@ namespace Shell.API.Infrastructure.Repositories
 
         protected override string CollectionName => "pages";
 
-        public async Task<PageMetaData> GetPage(string pageName)
+        public async Task<PageMetaData> GetPageAsync(string pageName)
         {
             return await GetFirstOrDefaultAsync(Builders<PageInfo>.Filter.Eq(x => x.PageName, pageName));
         }

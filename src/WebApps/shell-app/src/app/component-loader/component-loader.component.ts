@@ -1,7 +1,5 @@
-import { Component, OnInit, ViewContainerRef } from '@angular/core';
-import {FileType, MfeUtil} from "utils";
-
-export const mfe = new MfeUtil();
+import { Component, Input, OnInit, ViewContainerRef } from '@angular/core';
+import { MfeService } from "shell-service";
 
 @Component({
   selector: 'app-component-loader',
@@ -10,14 +8,22 @@ export const mfe = new MfeUtil();
 })
 export class ComponentLoaderComponent implements OnInit {
 
-  constructor(private viewCRef: ViewContainerRef) { }
+  @Input()
+  remoteName: string = '';
+
+  @Input()
+  remoteEndpoint: string = '';
+
+  @Input()
+  componentName: string = '';
+
+  constructor(private viewCRef: ViewContainerRef, private mfe: MfeService) { }
 
   async ngOnInit() {
-    const LoginComponent =  await mfe.loadRemoteFile({
-      remoteName: "identity",
-      remoteEntry: `http://localhost:8001/remoteIdentity.js`,
-      exposedFile: "LoginComponent",
-      exposeFileType: FileType.Component,
+    const LoginComponent =  await this.mfe.loadRemoteFile({
+      remoteName: this.remoteName,
+      remoteEntry: this.remoteEndpoint,
+      exposedFile: this.componentName,
     }).then((m) => m.LoginComponent);
 
     this.viewCRef.createComponent(LoginComponent);

@@ -2,17 +2,20 @@
   "profiles": {
     "Docker Compose": {
       "commandName": "DockerCompose",
+      "commandVersion": "1.0",
+      "composeLaunchAction": "LaunchBrowser",
+      "composeLaunchServiceName": "shell.app",
+      "composeLaunchUrl": "{Scheme}://localhost:{ServicePort}",
       "serviceActions": {
         "elasticsearch": "StartWithoutDebugging",
         "identity.api": "StartWithoutDebugging",
         "identity.data": "StartWithoutDebugging",
         "kibana": "StartWithoutDebugging",
         "portainer": "StartWithoutDebugging",
-        "shell.api": "StartWithoutDebugging",
-        "shell.app": "StartDebugging",
+        "shell.api": "StartDebugging",
+        "shell.app": "StartWithoutDebugging",
         "shell.data": "StartWithoutDebugging"
-      },
-      "commandVersion": "1.0"
+      }
     }
   }
 }

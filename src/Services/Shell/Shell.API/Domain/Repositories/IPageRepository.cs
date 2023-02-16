@@ -5,7 +5,7 @@ namespace Shell.API.Domain.Repositories
 {
     public interface IPageRepository : IDbRepository<PageMetaData>
     {
-        Task<PageMetaData> GetPage(string pageName);
+        Task<PageMetaData> GetPageAsync(string pageName);
         Task<PageMetaData> InsertOrUpdatePageAsync(string pageName, PageMetaData page);
         Task<PageMetaData> UpdatePageAsync(string pageName, PageMetaData page);
         Task DeletePageAsync(string pageName);

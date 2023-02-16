@@ -3,12 +3,12 @@ using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.OpenApi.Models;
 using MongoDB.Driver;
+using Shell.API.Application.Authorization.Handlers;
 using Shell.API.Domain.Repositories;
 using Shell.API.Domain.Services;
-using Shell.API.Infrastructure.Repositories;
 using Shell.API.Filters;
+using Shell.API.Infrastructure.Repositories;
 using Shell.API.Models;
-using Shell.API.Application.Services.Implementations;
 using System;
 using System.Collections.Generic;
 using System.IdentityModel.Tokens.Jwt;
@@ -84,15 +84,38 @@ namespace Shell.API.Extensions
 
         public static void AddRepositories(this IServiceCollection services)
         {
-            services.AddSingleton<IRowRepository, RowRepository>();
-            services.AddSingleton<IPageRepository, PageRepository>();
+            services.Scan(scan => scan
+                .FromAssemblyOf<IUnitOfWork>()
+                .AddClasses(classes => classes.Where(type => type.Name.EndsWith("Repository")))
+                .AsImplementedInterfaces()
+                .WithSingletonLifetime());
+
+            //services.AddSingleton<IRowRepository, RowRepository>();
+            //services.AddSingleton<IPageRepository, PageRepository>();
+            //services.AddSingleton<IComponentRepository, ComponentRepository>();
             services.AddSingleton<IUnitOfWork, MongoDbUnitOfWork>();
         }
 
         public static void AddServices(this IServiceCollection services)
         {
-            services.AddSingleton<IRowService, RowService>();
-            services.AddSingleton<IPageService, PageService>();
+            services.Scan(scan => scan
+              .FromAssemblyOf<IRowService>()
+              .AddClasses(classes => classes.Where(type => type.Name.EndsWith("Service")))
+              .AsImplementedInterfaces()
+              .WithSingletonLifetime());
+
+            //services.AddSingleton<IRowService, RowService>();
+            //services.AddSingleton<IPageService, PageService>();
+            //services.AddSingleton<IComponentService, ComponentService>();
+        }
+
+        public static void AddHandlers(this IServiceCollection services)
+        {
+            services.Scan(scan => scan
+              .FromAssemblyOf<RoleHandler>()
+              .AddClasses(classes => classes.Where(type => type.Name.EndsWith("Handler")))
+              .AsImplementedInterfaces()
+              .WithSingletonLifetime());
         }
     }
 }

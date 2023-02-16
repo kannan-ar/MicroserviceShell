@@ -1,7 +1,6 @@
 ﻿using AutoMapper;
 using Identity.API.Models.ClientViewModels;
 using Identity.API.Services;
-using IdentityServer4;
 using IdentityServer4.Models;
 using Microsoft.AspNetCore.Mvc;
 using System.Collections.Generic;
@@ -54,7 +53,8 @@ namespace Identity.API.Controllers
 
             item.AllowedGrantTypes = GrantTypes.Code;
             item.RequirePkce = true;
-            item.AllowPlainTextPkce = false;
+            item.AllowAccessTokensViaBrowser = true;
+            item.RequireConsent = false;
 
             await service.AddClient(item);
 

@@ -68,5 +68,10 @@ namespace Shell.API.Infrastructure.Repositories
         {
             await GetCollection().DeleteManyAsync(filter);
         }
+
+        public async Task<bool> IsExistsAsync(FilterDefinition<TData> filter)
+        {
+            return (await GetCollection().FindAsync(filter)).Any();
+        }
     }
 }
