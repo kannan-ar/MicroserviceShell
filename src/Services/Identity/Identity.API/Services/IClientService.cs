@@ -12,5 +12,6 @@ namespace Identity.API.Services
         Task<List<Client>> GetClients();
         Task<Client> GetClient(string clientId);
         Task Delete(string clientId);
+        Task Clone(string clientId, string newClientId);
     }
 }

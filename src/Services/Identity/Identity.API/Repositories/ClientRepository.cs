@@ -1,4 +1,5 @@
-﻿using IdentityServer4.EntityFramework.DbContexts;
+﻿using Identity.API.Extensions;
+using IdentityServer4.EntityFramework.DbContexts;
 using IdentityServer4.EntityFramework.Mappers;
 using IdentityServer4.Models;
 using Microsoft.EntityFrameworkCore;
@@ -22,6 +23,18 @@ namespace Identity.API.Repositories
             context.Clients.Add(client.ToEntity());
 
             await context.SaveChangesAsync();
+        }
+
+        public async Task Clone(string clientId, string newClientId)
+        {
+            var client = await GetClient(clientId);
+
+            var newClient = client.DeepClone();
+
+            newClient.ClientId = newClientId;
+            newClient.ClientName = newClientId;
+
+            await AddClient(newClient);
         }
 
         public async Task Delete(string clientId)
@@ -75,6 +88,8 @@ namespace Identity.API.Repositories
                .Include(x => x.AllowedScopes)
                .Include(x => x.AllowedGrantTypes)
                .Include(x => x.AllowedCorsOrigins)
+               .Include(x => x.ClientSecrets)
+               .Include(x => x.Claims)
                .FirstOrDefaultAsync();
 
             return client.ToModel();

@@ -20,6 +20,11 @@ namespace Identity.API.Services
             await repository.AddClient(client);
         }
 
+        public async Task Clone(string clientId, string newClientId)
+        {
+            await repository.Clone(clientId, newClientId);
+        }
+
         public async Task Delete(string clientId)
         {
             await repository.Delete(clientId);

@@ -12,5 +12,6 @@ namespace Identity.API.Repositories
         Task<Client> GetClient(string clientId);
         Task EditClient(string id, Client client);
         Task Delete(string clientId);
+        Task Clone(string clientId, string newClientId);
     }
 }

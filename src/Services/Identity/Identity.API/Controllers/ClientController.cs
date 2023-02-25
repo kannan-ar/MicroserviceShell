@@ -7,6 +7,7 @@ using Microsoft.AspNetCore.Mvc;
 using System;
 using System.Collections.Generic;
 using System.Threading.Tasks;
+using System.Text.Json;
 
 namespace Identity.API.Controllers
 {
@@ -53,18 +54,30 @@ namespace Identity.API.Controllers
             return View(mapper.Map<ClientDetailModel>(client));
         }
 
-        public async Task<IActionResult> Clone(string id)
+        [HttpGet]
+        public async Task<IActionResult> Json(string id)
         {
             var client = await service.GetClient(id);
-            var clonedClient = client.Clone();
-            
-            var clientId = Guid.NewGuid().ToString();
 
-            clonedClient.ClientId = clientId;
-            clonedClient.ClientName = clientId;
+            return new JsonResult(client, new JsonSerializerOptions
+            {
+                WriteIndented = true
+            });
+        }
 
-            await service.AddClient(clonedClient);
+        public async Task<IActionResult> Clone(string id)
+        {
+            //var client = await service.GetClient(id);
+            //var clonedClient = client.Clone();
 
+            //var clientId = Guid.NewGuid().ToString();
+
+            //clonedClient.ClientId = clientId;
+            //clonedClient.ClientName = clientId;
+
+            //await service.AddClient(clonedClient);
+
+            await service.Clone(id, Guid.NewGuid().ToString());
             return RedirectToAction(nameof(Index));
         }
 
