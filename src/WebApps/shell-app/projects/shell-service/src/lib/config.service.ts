@@ -9,12 +9,8 @@ export default class ConfigService {
     constructor(private http: HttpClient) {
     }
 
-    public loadConfiguration(): Observable<AppConfig> | undefined {
-        try {
-            let configPath = `${window.location.origin}/config.json`;
-            return this.http.get<AppConfig>(configPath);
-        } catch (error) {
-            return undefined;
-        }
+    public loadConfiguration(): Observable<AppConfig> {
+        let configPath = `${window.location.origin}/assets/config.json`;
+        return this.http.get<AppConfig>(configPath);
     }
 }

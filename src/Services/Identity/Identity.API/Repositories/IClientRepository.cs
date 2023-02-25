@@ -9,6 +9,8 @@ namespace Identity.API.Repositories
     {
         Task AddClient(Client client);
         Task<List<Client>> GetAllClients();
+        Task<Client> GetClient(string clientId);
+        Task EditClient(string id, Client client);
         Task Delete(string clientId);
     }
 }

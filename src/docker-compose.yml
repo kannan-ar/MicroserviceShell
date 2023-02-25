@@ -24,6 +24,14 @@ services:
   shell.data:
     image: mongo
 
+  shell.webapp:
+    image: ${DOCKER_REGISTRY-}shellwebapp
+    build:
+      context: .
+      dockerfile: WebApps/ShellApp/Dockerfile
+    depends_on:
+      - shell.api
+
   shell.app:
     image: ${DOCKER_REGISTRY-}shellapp
     build:
@@ -36,7 +44,7 @@ services:
     image: ${DOCKER_REGISTRY-}shellapp-identity
     build:
       context: .
-      dockerfile: WebApps/shell-app/Dockerfile-identity
+      dockerfile: WebApps/shell-app-identity/Dockerfile
     depends_on:
       - identity.api
 

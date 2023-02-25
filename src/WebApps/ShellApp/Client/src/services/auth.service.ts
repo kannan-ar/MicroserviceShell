@@ -8,7 +8,7 @@ export default class AuthService {
 
     constructor() {
         const { setting } = store.getState();
-
+        console.log(setting);
         this.userManager = new UserManager({
             authority: setting.authority,
             client_id: setting.client_id,

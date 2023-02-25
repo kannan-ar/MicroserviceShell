@@ -25,6 +25,16 @@ namespace Identity.API.Services
             await repository.Delete(clientId);
         }
 
+        public async Task EditClient(string id, Client client)
+        {
+            await repository.EditClient(id, client);
+        }
+
+        public async Task<Client> GetClient(string clientId)
+        {
+            return await repository.GetClient(clientId);
+        }
+
         public async Task<List<Client>> GetClients()
         {
             return await repository.GetAllClients();

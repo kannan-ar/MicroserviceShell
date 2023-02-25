@@ -4,15 +4,12 @@
   "scripts": {
     "ng": "ng",
     "start": "ng serve --live-reload false --configuration development",
-    "start:identity": "ng serve --live-reload false identity --configuration development",
     "build": "ng build",
     "build:service": "ng build shell-service",
     "build:models": "ng build shell-models",
-    "build:identity": "ng build identity",
     "watch": "ng build --watch --configuration development",
     "test": "ng test",
-    "build:all": "npm run build:models && npm run build:service && npm run build",
-    "start:all": "start npm run start && npm run start:identity"
+    "build:all": "npm run build:models && npm run build:service && npm run build"
   },
   "private": true,
   "dependencies": {

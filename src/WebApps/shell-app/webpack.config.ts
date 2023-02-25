@@ -22,13 +22,13 @@ export const webpackConfig: Configuration = {
                     eager: true,
                     singleton: true,
                     strictVersion: true,
-                    requiredVersion: dep.dependencies['@angular/core']
+                    requiredVersion: dep.dependencies["@angular/core"],
                 },
                 '@angular/common': {
                     eager: true,
                     singleton: true,
                     strictVersion: true,
-                    requiredVersion: dep.dependencies["@angular/common"]
+                    requiredVersion: dep.dependencies["@angular/common"],
                 },
                 '@angular/router': {
                     eager: true,
@@ -36,6 +36,12 @@ export const webpackConfig: Configuration = {
                     strictVersion: true,
                     requiredVersion: dep.dependencies["@angular/router"],
                 },
+                "@angular/common/http": { 
+                    eager: true,
+                    singleton: true,
+                    strictVersion: true,
+                    requiredVersion: '13.2.7'
+                }
             }
         })
     ]

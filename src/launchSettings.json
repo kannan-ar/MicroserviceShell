@@ -8,11 +8,11 @@
       "composeLaunchUrl": "{Scheme}://localhost:{ServicePort}",
       "serviceActions": {
         "elasticsearch": "StartWithoutDebugging",
-        "identity.api": "StartWithoutDebugging",
+        "identity.api": "StartDebugging",
         "identity.data": "StartWithoutDebugging",
         "kibana": "StartWithoutDebugging",
         "portainer": "StartWithoutDebugging",
-        "shell.api": "StartDebugging",
+        "shell.api": "StartWithoutDebugging",
         "shell.app": "StartWithoutDebugging",
         "shell.data": "StartWithoutDebugging"
       }

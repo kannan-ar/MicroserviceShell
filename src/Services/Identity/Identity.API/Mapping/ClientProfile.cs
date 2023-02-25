@@ -8,8 +8,10 @@ namespace Identity.API.Mapping
     {
         public ClientProfile()
         {
-            CreateMap<RegisterViewModel, Client>();
-            CreateMap<Client, ClientViewModel>();
+            CreateMap<ClientViewModel, Client>().ReverseMap();
+            CreateMap<RegisterViewModel, Client>().ReverseMap();
+            CreateMap<Client, ClientDetailModel>();
+            CreateMap<Client, ClientEditModel>().ReverseMap();
         }
     }
 }

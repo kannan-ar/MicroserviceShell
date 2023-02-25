@@ -1,0 +1,45 @@
+﻿@model Identity.API.Models.ClientViewModels.ClientDetailModel
+
+<div class="container">
+    <h4>Client Details</h4>
+    <table class="table">
+        <tr>
+            <td>Client ID</td>
+            <td>:</td>
+            <td>@Model.ClientId</td>
+        </tr>
+        <tr>
+            <td>Client Name</td>
+            <td>:</td>
+            <td>@Model.ClientName</td>
+        </tr>
+        <tr>
+            <td>Allowed Grant Type</td>
+            <td>:</td>
+            <td>@Model.AllowedGrantType</td>
+        </tr>
+         <tr>
+            <td>Redirect Uri</td>
+            <td>:</td>
+            <td>@Model.RedirectUri</td>
+        </tr>
+        <tr>
+            <td>Post Logout Redirect Uri</td>
+            <td>:</td>
+            <td>@Model.PostLogoutRedirectUri</td>
+        </tr>
+        <tr>
+            <td>Allowed Scope</td>
+            <td>:</td>
+            <td>@Model.AllowedScope</td>
+        </tr>
+        <tr>
+            <td>Allowed Cors Origin</td>
+            <td>:</td>
+            <td>@Model.AllowedCorsOrigin</td>
+        </tr>
+        <tr>
+            <td colspan="3"><a href="@Url.ActionLink("Index", "Client")">Back</a></td>
+        </tr>
+    </table>
+</div>

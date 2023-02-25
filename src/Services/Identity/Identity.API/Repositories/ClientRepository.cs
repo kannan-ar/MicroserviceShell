@@ -35,6 +35,27 @@ namespace Identity.API.Repositories
             }
         }
 
+        public async Task EditClient(string id, Client client)
+        {
+            var updatedClient = client.ToEntity();
+
+            var existingClient = context.Clients
+                .Include(x => x.RedirectUris)
+                .Include(x => x.PostLogoutRedirectUris)
+                .Include(x => x.AllowedScopes)
+                .Include(x => x.AllowedCorsOrigins)
+                .FirstOrDefault(x => x.ClientId == id);
+
+            existingClient.ClientId = updatedClient.ClientId;
+            existingClient.ClientName = updatedClient.ClientName;
+            existingClient.RedirectUris = updatedClient.RedirectUris;
+            existingClient.PostLogoutRedirectUris = updatedClient.PostLogoutRedirectUris;
+            existingClient.AllowedScopes = updatedClient.AllowedScopes;
+            existingClient.AllowedCorsOrigins = updatedClient.AllowedCorsOrigins;
+
+            await context.SaveChangesAsync();
+        }
+
         public async Task<List<Client>> GetAllClients()
         {
             var clients = await context.Clients
@@ -43,6 +64,20 @@ namespace Identity.API.Repositories
                 .Include(x => x.AllowedScopes)
                 .ToListAsync();
             return clients.Select(x => x.ToModel()).ToList();
+        }
+
+        public async Task<Client> GetClient(string clientId)
+        {
+            var client = await context.Clients
+                .Where(x => x.ClientId == clientId)
+               .Include(x => x.RedirectUris)
+               .Include(x => x.PostLogoutRedirectUris)
+               .Include(x => x.AllowedScopes)
+               .Include(x => x.AllowedGrantTypes)
+               .Include(x => x.AllowedCorsOrigins)
+               .FirstOrDefaultAsync();
+
+            return client.ToModel();
         }
     }
 }

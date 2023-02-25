@@ -1,5 +1,6 @@
 import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
+import { HttpClientModule } from '@angular/common/http';
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
@@ -9,9 +10,9 @@ import { CellContainerComponent } from './cell-container/cell-container.componen
 
 import { ShellServiceModule } from 'shell-service';
 import { MfeService } from "shell-service";
-import { ComponentService } from 'shell-service';
 import { PageComponent } from './page/page.component';
 import { ModalComponent } from './shared/modal/modal.component';
+import { AuthCallbackComponent } from './auth-callback/auth-callback.component';
 
 @NgModule({
   declarations: [
@@ -20,16 +21,17 @@ import { ModalComponent } from './shared/modal/modal.component';
     ComponentRegisterComponent,
     CellContainerComponent,
     PageComponent,
-    ModalComponent
+    ModalComponent,
+    AuthCallbackComponent
   ],
   imports: [
     BrowserModule,
+    HttpClientModule,
     AppRoutingModule,
     ShellServiceModule
   ],
   providers: [
-    MfeService,
-    ComponentService
+    MfeService
   ],
   bootstrap: [AppComponent]
 })

@@ -18,21 +18,21 @@ export const webpackConfig: Configuration = {
             library: { type: 'var', name: 'identity' },
             filename: 'remoteIdentity.js',
             exposes: {
-                LoginModule: 'projects/identity/src/app/app.module.ts',
-                LoginComponent: 'projects/identity/src/app/login/login.component.ts'
+                LoginModule: 'src/app/app.module.ts',
+                LoginComponent: 'src/app/login/login.component.ts'
             },
             shared: {
                 '@angular/core': {
                     eager: true,
                     singleton: true,
                     strictVersion: true,
-                    requiredVersion: dep.dependencies['@angular/core']
+                    requiredVersion: dep.dependencies["@angular/core"],
                 },
                 '@angular/common': {
                     eager: true,
                     singleton: true,
                     strictVersion: true,
-                    requiredVersion: dep.dependencies["@angular/common"]
+                    requiredVersion: dep.dependencies["@angular/common"],
                 },
                 '@angular/router': {
                     eager: true,
@@ -40,6 +40,12 @@ export const webpackConfig: Configuration = {
                     strictVersion: true,
                     requiredVersion: dep.dependencies["@angular/router"],
                 },
+                "@angular/common/http": {
+                    eager: true,
+                    singleton: true,
+                    strictVersion: true,
+                    requiredVersion: '13.2.7'
+                }
             }
         })
     ]

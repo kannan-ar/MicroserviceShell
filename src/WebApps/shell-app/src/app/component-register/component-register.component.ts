@@ -1,6 +1,5 @@
 import { Component, OnInit } from '@angular/core';
 
-import { ComponentService } from 'shell-service';
 
 @Component({
   selector: 'app-component-register',
@@ -9,7 +8,6 @@ import { ComponentService } from 'shell-service';
 })
 export class ComponentRegisterComponent implements OnInit {
 
-  constructor(private componentService: ComponentService) { }
 
   ngOnInit(): void {
   }
