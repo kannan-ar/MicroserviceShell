@@ -1,11 +1,13 @@
 import { Injectable } from "@angular/core";
 import { HttpClient } from "@angular/common/http";
 
-import { AppConfig } from "shell-models";
+import { AppConfig } from '../models';
 import { Observable } from "rxjs";
 
-@Injectable()
-export default class ConfigService {
+@Injectable({
+    providedIn: 'root'
+  })
+export class ConfigService {
     constructor(private http: HttpClient) {
     }
 

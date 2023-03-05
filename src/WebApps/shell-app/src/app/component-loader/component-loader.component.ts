@@ -1,5 +1,5 @@
 import { Component, Input, OnInit, ViewContainerRef } from '@angular/core';
-import { MfeService } from "shell-service";
+import { MfeService } from '../core/services';
 
 @Component({
   selector: 'app-component-loader',

@@ -36,6 +36,145 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "EventBus", "EventBus", "{25
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ShellApp", "WebApps\ShellApp\ShellApp.csproj", "{3208C921-CE35-45F5-8BDF-84CEA074C02C}"
 EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "shell-app", "shell-app", "{CB8150DF-514E-4B51-A2C6-64356112910D}"
+	ProjectSection(SolutionItems) = preProject
+		WebApps\shell-app\.browserslistrc = WebApps\shell-app\.browserslistrc
+		WebApps\shell-app\.editorconfig = WebApps\shell-app\.editorconfig
+		WebApps\shell-app\.gitignore = WebApps\shell-app\.gitignore
+		WebApps\shell-app\angular.json = WebApps\shell-app\angular.json
+		WebApps\shell-app\Dockerfile = WebApps\shell-app\Dockerfile
+		WebApps\shell-app\karma.conf.js = WebApps\shell-app\karma.conf.js
+		WebApps\shell-app\nginx.conf = WebApps\shell-app\nginx.conf
+		WebApps\shell-app\package-lock.json = WebApps\shell-app\package-lock.json
+		WebApps\shell-app\package.json = WebApps\shell-app\package.json
+		WebApps\shell-app\README.md = WebApps\shell-app\README.md
+		WebApps\shell-app\tailwind.config.js = WebApps\shell-app\tailwind.config.js
+		WebApps\shell-app\tsconfig.app.json = WebApps\shell-app\tsconfig.app.json
+		WebApps\shell-app\tsconfig.json = WebApps\shell-app\tsconfig.json
+		WebApps\shell-app\tsconfig.spec.json = WebApps\shell-app\tsconfig.spec.json
+		WebApps\shell-app\webpack.config.ts = WebApps\shell-app\webpack.config.ts
+	EndProjectSection
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "src", "src", "{66B9E523-B25E-46F6-BE2B-D7C00D6E8015}"
+	ProjectSection(SolutionItems) = preProject
+		WebApps\shell-app\src\favicon.ico = WebApps\shell-app\src\favicon.ico
+		WebApps\shell-app\src\index.html = WebApps\shell-app\src\index.html
+		WebApps\shell-app\src\main.ts = WebApps\shell-app\src\main.ts
+		WebApps\shell-app\src\polyfills.ts = WebApps\shell-app\src\polyfills.ts
+		WebApps\shell-app\src\styles.scss = WebApps\shell-app\src\styles.scss
+		WebApps\shell-app\src\test.ts = WebApps\shell-app\src\test.ts
+	EndProjectSection
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "environments", "environments", "{73778257-CA2F-42D1-8954-060276A89B23}"
+	ProjectSection(SolutionItems) = preProject
+		WebApps\shell-app\src\environments\environment.prod.ts = WebApps\shell-app\src\environments\environment.prod.ts
+		WebApps\shell-app\src\environments\environment.ts = WebApps\shell-app\src\environments\environment.ts
+	EndProjectSection
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "assets", "assets", "{8C2B3B09-1D97-49D8-89BE-DE3F2535C6B9}"
+	ProjectSection(SolutionItems) = preProject
+		WebApps\shell-app\src\assets\config.json = WebApps\shell-app\src\assets\config.json
+	EndProjectSection
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "app", "app", "{1594B928-9C96-40FC-8AFB-E0C6028D8C3E}"
+	ProjectSection(SolutionItems) = preProject
+		WebApps\shell-app\src\app\app-routing.module.ts = WebApps\shell-app\src\app\app-routing.module.ts
+		WebApps\shell-app\src\app\app.component.html = WebApps\shell-app\src\app\app.component.html
+		WebApps\shell-app\src\app\app.component.scss = WebApps\shell-app\src\app\app.component.scss
+		WebApps\shell-app\src\app\app.component.spec.ts = WebApps\shell-app\src\app\app.component.spec.ts
+		WebApps\shell-app\src\app\app.component.ts = WebApps\shell-app\src\app\app.component.ts
+		WebApps\shell-app\src\app\app.module.ts = WebApps\shell-app\src\app\app.module.ts
+	EndProjectSection
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "auth-callback", "auth-callback", "{95F06CB5-2253-484A-BFF3-FE441224C9BD}"
+	ProjectSection(SolutionItems) = preProject
+		WebApps\shell-app\src\app\auth-callback\auth-callback.component.html = WebApps\shell-app\src\app\auth-callback\auth-callback.component.html
+		WebApps\shell-app\src\app\auth-callback\auth-callback.component.scss = WebApps\shell-app\src\app\auth-callback\auth-callback.component.scss
+		WebApps\shell-app\src\app\auth-callback\auth-callback.component.spec.ts = WebApps\shell-app\src\app\auth-callback\auth-callback.component.spec.ts
+		WebApps\shell-app\src\app\auth-callback\auth-callback.component.ts = WebApps\shell-app\src\app\auth-callback\auth-callback.component.ts
+	EndProjectSection
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "cell-container", "cell-container", "{22665C76-1533-4B83-8DE1-5A8EE47E4192}"
+	ProjectSection(SolutionItems) = preProject
+		WebApps\shell-app\src\app\cell-container\cell-container.component.html = WebApps\shell-app\src\app\cell-container\cell-container.component.html
+		WebApps\shell-app\src\app\cell-container\cell-container.component.scss = WebApps\shell-app\src\app\cell-container\cell-container.component.scss
+		WebApps\shell-app\src\app\cell-container\cell-container.component.spec.ts = WebApps\shell-app\src\app\cell-container\cell-container.component.spec.ts
+		WebApps\shell-app\src\app\cell-container\cell-container.component.ts = WebApps\shell-app\src\app\cell-container\cell-container.component.ts
+	EndProjectSection
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "component-loader", "component-loader", "{543DF484-BB08-4F50-AB92-FD1E8EB6C1D7}"
+	ProjectSection(SolutionItems) = preProject
+		WebApps\shell-app\src\app\component-loader\component-loader.component.html = WebApps\shell-app\src\app\component-loader\component-loader.component.html
+		WebApps\shell-app\src\app\component-loader\component-loader.component.scss = WebApps\shell-app\src\app\component-loader\component-loader.component.scss
+		WebApps\shell-app\src\app\component-loader\component-loader.component.spec.ts = WebApps\shell-app\src\app\component-loader\component-loader.component.spec.ts
+		WebApps\shell-app\src\app\component-loader\component-loader.component.ts = WebApps\shell-app\src\app\component-loader\component-loader.component.ts
+	EndProjectSection
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "component-register", "component-register", "{05B62BDD-F93A-46F7-92BC-27E1E779B2B1}"
+	ProjectSection(SolutionItems) = preProject
+		WebApps\shell-app\src\app\component-register\component-register.component.html = WebApps\shell-app\src\app\component-register\component-register.component.html
+		WebApps\shell-app\src\app\component-register\component-register.component.scss = WebApps\shell-app\src\app\component-register\component-register.component.scss
+		WebApps\shell-app\src\app\component-register\component-register.component.spec.ts = WebApps\shell-app\src\app\component-register\component-register.component.spec.ts
+		WebApps\shell-app\src\app\component-register\component-register.component.ts = WebApps\shell-app\src\app\component-register\component-register.component.ts
+	EndProjectSection
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "page", "page", "{AAB6A949-9573-4B57-BECD-E70194543F41}"
+	ProjectSection(SolutionItems) = preProject
+		WebApps\shell-app\src\app\page\page.component.html = WebApps\shell-app\src\app\page\page.component.html
+		WebApps\shell-app\src\app\page\page.component.scss = WebApps\shell-app\src\app\page\page.component.scss
+		WebApps\shell-app\src\app\page\page.component.spec.ts = WebApps\shell-app\src\app\page\page.component.spec.ts
+		WebApps\shell-app\src\app\page\page.component.ts = WebApps\shell-app\src\app\page\page.component.ts
+	EndProjectSection
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "shared", "shared", "{F9B126E5-18D3-4177-8420-14C2344A6351}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "modal", "modal", "{14CBECE9-C38B-4900-BA18-A668D86D1D55}"
+	ProjectSection(SolutionItems) = preProject
+		WebApps\shell-app\src\app\shared\modal\modal.component.html = WebApps\shell-app\src\app\shared\modal\modal.component.html
+		WebApps\shell-app\src\app\shared\modal\modal.component.scss = WebApps\shell-app\src\app\shared\modal\modal.component.scss
+		WebApps\shell-app\src\app\shared\modal\modal.component.spec.ts = WebApps\shell-app\src\app\shared\modal\modal.component.spec.ts
+		WebApps\shell-app\src\app\shared\modal\modal.component.ts = WebApps\shell-app\src\app\shared\modal\modal.component.ts
+	EndProjectSection
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "core", "core", "{87B1A210-13E5-4A9E-BF5C-875F94320D90}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "models", "models", "{73DED509-87FE-49AD-AB21-DEDF44BA2F69}"
+	ProjectSection(SolutionItems) = preProject
+		WebApps\shell-app\src\app\core\models\app-config.ts = WebApps\shell-app\src\app\core\models\app-config.ts
+		WebApps\shell-app\src\app\core\models\cell.ts = WebApps\shell-app\src\app\core\models\cell.ts
+		WebApps\shell-app\src\app\core\models\component-base.ts = WebApps\shell-app\src\app\core\models\component-base.ts
+		WebApps\shell-app\src\app\core\models\component.ts = WebApps\shell-app\src\app\core\models\component.ts
+		WebApps\shell-app\src\app\core\models\index.ts = WebApps\shell-app\src\app\core\models\index.ts
+		WebApps\shell-app\src\app\core\models\page.ts = WebApps\shell-app\src\app\core\models\page.ts
+		WebApps\shell-app\src\app\core\models\row.ts = WebApps\shell-app\src\app\core\models\row.ts
+	EndProjectSection
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "services", "services", "{0720E907-F215-4772-A409-E0BC5CF12F5C}"
+	ProjectSection(SolutionItems) = preProject
+		WebApps\shell-app\src\app\core\services\auth.service.ts = WebApps\shell-app\src\app\core\services\auth.service.ts
+		WebApps\shell-app\src\app\core\services\component.service.ts = WebApps\shell-app\src\app\core\services\component.service.ts
+		WebApps\shell-app\src\app\core\services\config.service.ts = WebApps\shell-app\src\app\core\services\config.service.ts
+		WebApps\shell-app\src\app\core\services\index.ts = WebApps\shell-app\src\app\core\services\index.ts
+		WebApps\shell-app\src\app\core\services\mfe.service.ts = WebApps\shell-app\src\app\core\services\mfe.service.ts
+	EndProjectSection
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "store", "store", "{9C38C4A6-8B75-44A0-ADAF-37F42368952C}"
+	ProjectSection(SolutionItems) = preProject
+		WebApps\shell-app\src\app\store\index.ts = WebApps\shell-app\src\app\store\index.ts
+		WebApps\shell-app\src\app\store\reducer.ts = WebApps\shell-app\src\app\store\reducer.ts
+		WebApps\shell-app\src\app\store\state.ts = WebApps\shell-app\src\app\store\state.ts
+	EndProjectSection
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "platform", "platform", "{5A9CD34F-EEA2-4665-84A0-61CD7E0B504A}"
+	ProjectSection(SolutionItems) = preProject
+		WebApps\shell-app\src\app\store\platform\index.ts = WebApps\shell-app\src\app\store\platform\index.ts
+		WebApps\shell-app\src\app\store\platform\platform.actions.ts = WebApps\shell-app\src\app\store\platform\platform.actions.ts
+		WebApps\shell-app\src\app\store\platform\platform.effects.ts = WebApps\shell-app\src\app\store\platform\platform.effects.ts
+		WebApps\shell-app\src\app\store\platform\platform.reducers.ts = WebApps\shell-app\src\app\store\platform\platform.reducers.ts
+		WebApps\shell-app\src\app\store\platform\platform.selectors.ts = WebApps\shell-app\src\app\store\platform\platform.selectors.ts
+		WebApps\shell-app\src\app\store\platform\platform.state.ts = WebApps\shell-app\src\app\store\platform\platform.state.ts
+	EndProjectSection
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -90,6 +229,23 @@ Global
 		{6DEB623D-DB6C-4802-B50A-0F761113DF73} = {C98F7204-F952-4513-8FC1-41FDEDD2F821}
 		{25C2CE56-17B4-48E4-915E-73D6C06A8E86} = {CEC1FD7A-046A-4169-BF68-5A1912E60FEE}
 		{3208C921-CE35-45F5-8BDF-84CEA074C02C} = {7C8275A6-7C46-495D-AF0E-676177B7EEAC}
+		{CB8150DF-514E-4B51-A2C6-64356112910D} = {7C8275A6-7C46-495D-AF0E-676177B7EEAC}
+		{66B9E523-B25E-46F6-BE2B-D7C00D6E8015} = {CB8150DF-514E-4B51-A2C6-64356112910D}
+		{73778257-CA2F-42D1-8954-060276A89B23} = {66B9E523-B25E-46F6-BE2B-D7C00D6E8015}
+		{8C2B3B09-1D97-49D8-89BE-DE3F2535C6B9} = {66B9E523-B25E-46F6-BE2B-D7C00D6E8015}
+		{1594B928-9C96-40FC-8AFB-E0C6028D8C3E} = {66B9E523-B25E-46F6-BE2B-D7C00D6E8015}
+		{95F06CB5-2253-484A-BFF3-FE441224C9BD} = {1594B928-9C96-40FC-8AFB-E0C6028D8C3E}
+		{22665C76-1533-4B83-8DE1-5A8EE47E4192} = {1594B928-9C96-40FC-8AFB-E0C6028D8C3E}
+		{543DF484-BB08-4F50-AB92-FD1E8EB6C1D7} = {1594B928-9C96-40FC-8AFB-E0C6028D8C3E}
+		{05B62BDD-F93A-46F7-92BC-27E1E779B2B1} = {1594B928-9C96-40FC-8AFB-E0C6028D8C3E}
+		{AAB6A949-9573-4B57-BECD-E70194543F41} = {1594B928-9C96-40FC-8AFB-E0C6028D8C3E}
+		{F9B126E5-18D3-4177-8420-14C2344A6351} = {1594B928-9C96-40FC-8AFB-E0C6028D8C3E}
+		{14CBECE9-C38B-4900-BA18-A668D86D1D55} = {F9B126E5-18D3-4177-8420-14C2344A6351}
+		{87B1A210-13E5-4A9E-BF5C-875F94320D90} = {1594B928-9C96-40FC-8AFB-E0C6028D8C3E}
+		{73DED509-87FE-49AD-AB21-DEDF44BA2F69} = {87B1A210-13E5-4A9E-BF5C-875F94320D90}
+		{0720E907-F215-4772-A409-E0BC5CF12F5C} = {87B1A210-13E5-4A9E-BF5C-875F94320D90}
+		{9C38C4A6-8B75-44A0-ADAF-37F42368952C} = {1594B928-9C96-40FC-8AFB-E0C6028D8C3E}
+		{5A9CD34F-EEA2-4665-84A0-61CD7E0B504A} = {9C38C4A6-8B75-44A0-ADAF-37F42368952C}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {ED8CBADA-FC26-4F3C-BC34-F134C51BB997}

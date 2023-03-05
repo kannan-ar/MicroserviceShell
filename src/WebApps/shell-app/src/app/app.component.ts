@@ -1,5 +1,10 @@
 import { Component } from '@angular/core';
-import { AuthService } from 'shell-service';
+import { Store } from '@ngrx/store';
+import { AppConfig } from './core/models';
+
+import { AuthService } from './core/services';
+import { getConfig } from './store/platform';
+import { selectConfig } from './store/platform';
 
 @Component({
   selector: 'app-root',
@@ -9,8 +14,11 @@ import { AuthService } from 'shell-service';
 export class AppComponent {
   title = 'shell-app';
 
-  constructor(private authService: AuthService) {
-    authService.init();
+  constructor(
+    private authService: AuthService,
+    private store: Store<{ config: AppConfig }>) {
+    store.dispatch(getConfig());
+    this.store.select(selectConfig).subscribe(x => this.authService.init(x));
   }
 
   public onLogin() {

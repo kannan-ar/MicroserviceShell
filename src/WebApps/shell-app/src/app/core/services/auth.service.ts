@@ -1,25 +1,22 @@
 import { Injectable } from "@angular/core";
 import { User, UserManager } from 'oidc-client-ts';
-import { AppConfig } from "shell-models";
-import ConfigService from "./config.service";
 
-@Injectable()
+import { AppConfig } from "../models";
+
+@Injectable({
+    providedIn: 'root'
+})
 export class AuthService {
+
     userManager: UserManager | undefined;
 
-    constructor(private configService: ConfigService) {
-    }
-
-    public init() {
-        this.configService.loadConfiguration().subscribe((authModel: AppConfig) => {
-            console.log(authModel);
-            this.userManager = new UserManager({
-                authority: authModel.auth_authority,
-                client_id: authModel.auth_client_id,
-                response_type: 'code',
-                scope: authModel.auth_scope,
-                redirect_uri: authModel.auth_redirect_uri
-            });
+    public init(config: AppConfig) {
+        this.userManager = new UserManager({
+            authority: config.auth_authority,
+            client_id: config.auth_client_id,
+            response_type: 'code',
+            scope: config.auth_scope,
+            redirect_uri: config.auth_redirect_uri
         });
     }
 

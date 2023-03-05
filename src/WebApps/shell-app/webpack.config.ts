@@ -40,7 +40,7 @@ export const webpackConfig: Configuration = {
                     eager: true,
                     singleton: true,
                     strictVersion: true,
-                    requiredVersion: '13.2.7'
+                    requiredVersion: '14.2.12'
                 }
             }
         })

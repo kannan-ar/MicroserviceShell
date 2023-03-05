@@ -11,7 +11,6 @@ domReady(function () {
     const configService = Container.get(ConfigService);
 
     configService.loadConfiguration().then(config => {
-        console.log(config?.auth_client_id);
         store.dispatch(configUpdated({
             authority: config?.auth_authority,
             client_id: config?.auth_client_id,

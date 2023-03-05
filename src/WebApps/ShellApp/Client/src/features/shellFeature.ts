@@ -2,7 +2,6 @@
 
 const runShellFeature = () => {
     const app: HTMLElement | null = document!.getElementById("app");
-
     const text = document.createTextNode("Loading...")
     app!.appendChild(text);
 

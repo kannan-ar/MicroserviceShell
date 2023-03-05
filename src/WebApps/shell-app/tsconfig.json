@@ -25,14 +25,6 @@
     "resolveJsonModule": true,
     "esModuleInterop": true,
     "paths": {
-      "shell-models": [
-        "dist/shell-models/shell-models",
-        "dist/shell-models"
-      ],
-      "shell-service": [
-        "dist/shell-service/shell-service",
-        "dist/shell-service"
-      ],
       "utils": [
         "dist/utils/utils",
         "dist/utils"

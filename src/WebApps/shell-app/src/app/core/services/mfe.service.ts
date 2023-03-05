@@ -17,7 +17,9 @@ export interface LoadRemoteFileOptions {
   exposedFile: string;
 }
 
-@Injectable()
+@Injectable({
+  providedIn: 'root'
+})
 export class MfeService {
   // holds list of loaded script
   private fileMap: Record<string, boolean> = {};
