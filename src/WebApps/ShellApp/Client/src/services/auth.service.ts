@@ -38,4 +38,8 @@ export default class AuthService {
         });
 
     }
+
+    public getUser() {
+        return this.userManager.getUser();
+    }
 }

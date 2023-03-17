@@ -17,11 +17,18 @@ export class AppComponent {
   constructor(
     private authService: AuthService,
     private store: Store<{ config: AppConfig }>) {
-    store.dispatch(getConfig());
-    this.store.select(selectConfig).subscribe(x => this.authService.init(x));
+      //store.dispatch(getConfig());
   }
 
-  public onLogin() {
-    this.authService.login();
+  public async onLogin() {
+    /*this.store.select(selectConfig).subscribe(x => {
+      console.log(x);
+      this.authService.init(x);
+    });*/
+    await this.authService.login();
+  }
+
+  public async onLogout() {
+    console.log(await this.authService.getUser());
   }
 }

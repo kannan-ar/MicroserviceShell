@@ -12,7 +12,7 @@ using System.Threading.Tasks;
 
 namespace Shell.API.Controllers
 {
-    //[Authorize(Policy = "ComponentPolicy")]
+    [Authorize(Policy = "ComponentPolicy")]
     [ApiController]
     public class ComponentController : ControllerBase
     {

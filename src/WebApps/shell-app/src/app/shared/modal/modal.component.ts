@@ -38,8 +38,6 @@ export class ModalComponent implements OnInit {
   }
 
   onBackgroundClick() {
-    console.log('onBackgroundClick');
-
     if(this.clickHandled) {
       this.clickHandled = false;
       return;
