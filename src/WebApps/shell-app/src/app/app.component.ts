@@ -1,10 +1,10 @@
 import { Component } from '@angular/core';
 import { Store } from '@ngrx/store';
-import { AppConfig } from './core/models';
+import { filter, first } from 'rxjs/operators';
 
+import { AppConfig } from './core/models';
 import { AuthService } from './core/services';
-import { getConfig } from './store/platform';
-import { selectConfig } from './store/platform';
+import { getConfig, selectConfig } from './store/platform';
 
 @Component({
   selector: 'app-root',
@@ -13,22 +13,23 @@ import { selectConfig } from './store/platform';
 })
 export class AppComponent {
   title = 'shell-app';
+  authService: AuthService | undefined;
+  
+  constructor(private store: Store<{ config: AppConfig }>) {
+    store.dispatch(getConfig());
+  }
 
-  constructor(
-    private authService: AuthService,
-    private store: Store<{ config: AppConfig }>) {
-      //store.dispatch(getConfig());
+  ngOnInit() {
+    this.store.select(selectConfig).pipe(filter(x => x.auth_authority !== "")).pipe(first()).subscribe(x => {
+      this.authService = new AuthService(x);
+    });
   }
 
   public async onLogin() {
-    /*this.store.select(selectConfig).subscribe(x => {
-      console.log(x);
-      this.authService.init(x);
-    });*/
-    await this.authService.login();
+    await this.authService!.login();
   }
 
   public async onLogout() {
-    console.log(await this.authService.getUser());
+    console.log(await this.authService!.getUser());
   }
 }

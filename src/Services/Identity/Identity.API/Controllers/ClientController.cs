@@ -67,16 +67,6 @@ namespace Identity.API.Controllers
 
         public async Task<IActionResult> Clone(string id)
         {
-            //var client = await service.GetClient(id);
-            //var clonedClient = client.Clone();
-
-            //var clientId = Guid.NewGuid().ToString();
-
-            //clonedClient.ClientId = clientId;
-            //clonedClient.ClientName = clientId;
-
-            //await service.AddClient(clonedClient);
-
             await service.Clone(id, Guid.NewGuid().ToString());
             return RedirectToAction(nameof(Index));
         }
@@ -95,9 +85,9 @@ namespace Identity.API.Controllers
                 };
             }
 
-            item.AllowedGrantTypes = GrantTypes.Code;
             item.RequirePkce = true;
             item.AllowAccessTokensViaBrowser = true;
+            item.AllowPlainTextPkce = false;
             item.RequireConsent = false;
 
             await service.AddClient(item);

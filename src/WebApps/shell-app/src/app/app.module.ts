@@ -24,7 +24,7 @@ import { PlatformEffects } from './store/platform';
     CellContainerComponent,
     PageComponent,
     ModalComponent,
-    AuthCallbackComponent
+    AuthCallbackComponent,
   ],
   imports: [
     BrowserModule,

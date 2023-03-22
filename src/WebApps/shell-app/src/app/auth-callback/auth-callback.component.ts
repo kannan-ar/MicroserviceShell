@@ -1,7 +1,9 @@
 import { Component, OnInit } from '@angular/core';
-
+import { Store } from '@ngrx/store';
+import { filter, first } from 'rxjs/operators';
+import { AppConfig } from '../core/models';
 import { AuthService } from '../core/services';
-//import { AppConfig } from '../core/models';
+import { selectConfig } from '../store/platform';
 
 @Component({
   selector: 'app-auth-callback',
@@ -10,10 +12,15 @@ import { AuthService } from '../core/services';
 })
 export class AuthCallbackComponent implements OnInit {
 
-  constructor(private authService: AuthService) {
+  authService: AuthService | undefined;
+  
+  constructor(private store: Store<{ config: AppConfig }>) {
   }
 
-  async ngOnInit() {
-    await this.authService.signinCallback();
+  ngOnInit() {
+    this.store.select(selectConfig).pipe(filter(x => x.auth_authority !== "")).pipe(first()).subscribe(x => {
+      this.authService = new AuthService(x);
+      this.authService.signinRedirect();
+    });
   }
 }

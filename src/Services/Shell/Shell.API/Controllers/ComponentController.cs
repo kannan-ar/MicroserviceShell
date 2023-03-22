@@ -13,6 +13,7 @@ using System.Threading.Tasks;
 namespace Shell.API.Controllers
 {
     [Authorize(Policy = "ComponentPolicy")]
+    [Route("components")]
     [ApiController]
     public class ComponentController : ControllerBase
     {
@@ -34,7 +35,7 @@ namespace Shell.API.Controllers
         }
 
         [AllowAnonymous]
-        [HttpGet("components")]
+        [HttpGet]
         [ProducesResponseType(StatusCodes.Status200OK)]
         [ProducesResponseType(StatusCodes.Status500InternalServerError)]
         public async Task<ActionResult<IEnumerable<ComponentBase>>> Get()
@@ -44,7 +45,7 @@ namespace Shell.API.Controllers
             return Ok(_mapper.Map<IEnumerable<ComponentBase>>(await _componentService.GetComponentsAsync(isAuthenticated).ConfigureAwait(false)));
         }
 
-        [HttpGet("components/{componentName}")]
+        [HttpGet("{componentName}")]
         [ProducesResponseType(StatusCodes.Status404NotFound)]
         [ProducesResponseType(StatusCodes.Status200OK)]
         [ProducesResponseType(StatusCodes.Status500InternalServerError)]
@@ -58,7 +59,7 @@ namespace Shell.API.Controllers
             return Ok(_mapper.Map<Component>(await _componentService.GetComponentAsync(componentName).ConfigureAwait(false)));
         }
 
-        [HttpPost("components")]
+        [HttpPost]
         [ProducesResponseType(StatusCodes.Status204NoContent)]
         [ProducesResponseType(StatusCodes.Status400BadRequest)]
         [ProducesResponseType(StatusCodes.Status401Unauthorized)]
@@ -76,7 +77,7 @@ namespace Shell.API.Controllers
             return NoContent();
         }
 
-        [HttpPatch("components/{componentName}")]
+        [HttpPatch("{componentName}")]
         [ProducesResponseType(StatusCodes.Status204NoContent)]
         [ProducesResponseType(StatusCodes.Status401Unauthorized)]
         [ProducesResponseType(StatusCodes.Status500InternalServerError)]
@@ -91,7 +92,7 @@ namespace Shell.API.Controllers
             return NoContent();
         }
 
-        [HttpDelete("components/{componentName}")]
+        [HttpDelete("{componentName}")]
         [ProducesResponseType(StatusCodes.Status204NoContent)]
         [ProducesResponseType(StatusCodes.Status401Unauthorized)]
         [ProducesResponseType(StatusCodes.Status500InternalServerError)]
