@@ -2,6 +2,7 @@ import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
 import { AuthCallbackComponent } from './auth-callback/auth-callback.component';
 import { ComponentRegisterComponent } from './component-register/component-register.component';
+import { AuthGuardService } from './core/services/auth-guard.service';
 import { PageComponent } from './page/page.component';
 
 const routes: Routes = [
@@ -15,7 +16,8 @@ const routes: Routes = [
   },
   {
     path: 'register',
-    component: ComponentRegisterComponent
+    component: ComponentRegisterComponent,
+    canActivate: [AuthGuardService]
   }
 ];
 

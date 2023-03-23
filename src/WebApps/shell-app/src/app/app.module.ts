@@ -1,4 +1,4 @@
-import { NgModule } from '@angular/core';
+import { APP_INITIALIZER, NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
 import { HttpClientModule } from '@angular/common/http';
 import { StoreModule } from '@ngrx/store';
@@ -15,6 +15,11 @@ import { ModalComponent } from './shared/modal/modal.component';
 import { AuthCallbackComponent } from './auth-callback/auth-callback.component';
 import { reducers, metaReducers } from './store';
 import { PlatformEffects } from './store/platform';
+import { ConfigService } from './core/services';
+
+function configServiceFactory(config: ConfigService) {
+  return () => config.getConfiguration().toPromise();
+}
 
 @NgModule({
   declarations: [
@@ -35,7 +40,14 @@ import { PlatformEffects } from './store/platform';
     }),
     EffectsModule.forRoot([PlatformEffects])
   ],
-  providers: [],
+  providers: [
+    {
+      provide: APP_INITIALIZER,
+      useFactory: configServiceFactory,
+      deps: [ConfigService],
+      multi: true
+    }
+  ],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

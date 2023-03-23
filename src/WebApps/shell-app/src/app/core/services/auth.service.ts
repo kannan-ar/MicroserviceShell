@@ -1,12 +1,19 @@
+import { Injectable } from '@angular/core';
 import { User, UserManager } from 'oidc-client-ts';
 
-import { AppConfig } from "../models";
+import { ConfigService } from './config.service';
+
+@Injectable({
+    providedIn: 'root'
+  })
 
 export class AuthService {
 
     userManager: UserManager;
 
-    constructor(config: AppConfig) {
+    constructor(configService: ConfigService) {
+        const config = configService.appConfig!;
+
         this.userManager = new UserManager({
             authority: config.auth_authority,
             client_id: config.auth_client_id,

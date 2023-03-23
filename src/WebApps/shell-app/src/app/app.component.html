@@ -6,7 +6,7 @@
         <i class="fas fa-bars fa-2x visible md:invisible mr-10 md:mr-0 text-blue-200 cursor-pointer"></i>
         <ul class="hidden md:flex overflow-x-hidden mr-10 font-semibold">
             <li class="mr-6 p-1">
-                <a class="text-blue-200 cursor-default" href="#">Register Component</a>
+                <a class="text-blue-200 cursor-default" href="#" (click)="onRegister()">Register Component</a>
             </li>
             <li class="mr-6 p-1">
                 <a class="text-blue-200 cursor-default" href="#">Edit Layout</a>
@@ -14,10 +14,10 @@
             <li class="mr-6 p-1">
                 <a class="text-blue-200 cursor-default" href="#">Manage Pages</a>
             </li>
-            <li class="mr-6 p-1">
+            <li class="mr-6 p-1" *ngIf="!(isLoggedIn | async)">
                 <a class="text-blue-200 cursor-default" href="#" (click)="onLogin()">Login</a>
             </li>
-            <li class="mr-6 p-1">
+            <li class="mr-6 p-1" *ngIf="isLoggedIn | async">
                 <a class="text-blue-200 cursor-default" href="#" (click)="onLogout()">Logout</a>
             </li>
         </ul>

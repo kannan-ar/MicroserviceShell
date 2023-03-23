@@ -12,15 +12,10 @@ import { selectConfig } from '../store/platform';
 })
 export class AuthCallbackComponent implements OnInit {
 
-  authService: AuthService | undefined;
-  
-  constructor(private store: Store<{ config: AppConfig }>) {
+  constructor(private authService: AuthService) {
   }
 
   ngOnInit() {
-    this.store.select(selectConfig).pipe(filter(x => x.auth_authority !== "")).pipe(first()).subscribe(x => {
-      this.authService = new AuthService(x);
-      this.authService.signinRedirect();
-    });
+    this.authService.signinRedirect();
   }
 }
