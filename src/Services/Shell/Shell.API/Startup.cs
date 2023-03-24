@@ -23,6 +23,7 @@ namespace Shell.API
         // This method gets called by the runtime. Use this method to add services to the container.
         public void ConfigureServices(IServiceCollection services)
         {
+            services.AddCors();
             services.AddControllers();
             services.AddHttpContextAccessor();
             services.AddMongoDb(Configuration);
@@ -42,7 +43,13 @@ namespace Shell.API
         {
             if (env.IsDevelopment())
             {
-                app.UseDeveloperExceptionPage();
+                app.UseCors(options => options
+                  .SetIsOriginAllowed(origin => true)
+                  .AllowAnyMethod()
+                  .AllowAnyHeader()
+                  .AllowCredentials());
+
+              app.UseDeveloperExceptionPage();
                 app.UseSwagger();
                 app.UseSwaggerUI(setup =>
                 {

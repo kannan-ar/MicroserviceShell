@@ -1,6 +1,6 @@
 import { APP_INITIALIZER, NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
-import { HttpClientModule } from '@angular/common/http';
+import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
 import { StoreModule } from '@ngrx/store';
 import { EffectsModule } from '@ngrx/effects';
 
@@ -15,11 +15,9 @@ import { ModalComponent } from './shared/modal/modal.component';
 import { AuthCallbackComponent } from './auth-callback/auth-callback.component';
 import { reducers, metaReducers } from './store';
 import { PlatformEffects } from './store/platform';
-import { ConfigService } from './core/services';
-
-function configServiceFactory(config: ConfigService) {
-  return () => config.getConfiguration().toPromise();
-}
+import { AuthService, ConfigService } from './core/services';
+import { AuthInterceptor } from './core/services/auth.interceptor';
+import { configServiceFactory } from './core/services/config-service.provider';
 
 @NgModule({
   declarations: [
@@ -45,6 +43,12 @@ function configServiceFactory(config: ConfigService) {
       provide: APP_INITIALIZER,
       useFactory: configServiceFactory,
       deps: [ConfigService],
+      multi: true
+    },
+    {
+      provide: HTTP_INTERCEPTORS,
+      useClass: AuthInterceptor,
+      deps: [AuthService],
       multi: true
     }
   ],

@@ -24,7 +24,8 @@ export class PlatformEffects {
                                 auth_authority: config.auth_authority,
                                 auth_client_id: config.auth_client_id,
                                 auth_scope: config.auth_scope,
-                                auth_redirect_uri: config.auth_redirect_uri
+                                auth_redirect_uri: config.auth_redirect_uri,
+                                api_base_url: config.api_base_url
                             }
                         }))
                 )

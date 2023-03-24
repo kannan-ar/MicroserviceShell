@@ -9,6 +9,7 @@ export const initialPlatformState: PlatformState = {
         auth_authority: '',
         auth_client_id: '',
         auth_scope: '',
-        auth_redirect_uri: ''
+        auth_redirect_uri: '',
+        api_base_url: ''
     }
 }

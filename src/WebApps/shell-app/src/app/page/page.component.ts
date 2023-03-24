@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { ComponentService } from '../core/services/component.service';
 
 @Component({
   selector: 'app-page',
@@ -7,9 +8,9 @@ import { Component, OnInit } from '@angular/core';
 })
 export class PageComponent implements OnInit {
 
-  constructor() { }
+  constructor(private componentService: ComponentService) { }
 
-  ngOnInit(): void {
+  ngOnInit() {
+    this.componentService.getComponents().subscribe(x => console.log(x));
   }
-
 }

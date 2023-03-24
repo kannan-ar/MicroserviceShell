@@ -48,6 +48,11 @@ export class AuthService {
         });
     }
 
+    public async getToken(): Promise<string | undefined> {
+        const user = await this.userManager.getUser();
+        return user?.access_token;
+    }
+    
     public async isLogged(): Promise<boolean> {
         return await this.userManager!.getUser() !== null;
     }
