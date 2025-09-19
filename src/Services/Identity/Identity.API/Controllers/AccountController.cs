@@ -96,6 +96,15 @@ namespace Identity.API.Controllers
             return View(vm);
         }
 
+        [HttpPost]
+        public async Task<IActionResult> Logout(string logoutId)
+        {
+            var logout = await _interaction.GetLogoutContextAsync(logoutId);
+
+            await HttpContext.SignOutAsync();
+            return Redirect(logout.PostLogoutRedirectUri);
+        }
+
         private async Task<LoginViewModel> BuildLoginViewModelAsync(string returnUrl, AuthorizationRequest context)
         {
             if (context.Client?.ClientId != null)

@@ -1,3 +1,30 @@
-<app-modal title="Register Component" (ok)="onOk()" (cancel)="onCancel()">
-    <button>Register</button>
-</app-modal>
+<div class="flex mt-[100px] justify-center">
+    <div class="block rounded-lg  bg-white p-6 shadow-lg dark:bg-neutral-700 w-1/2">
+        <ng-container [formGroup]="this.myFormGroup">
+            <div class="mb-5">
+                <label class="block text-sm font-medium leading-6 text-gray-900">Remote Name</label>
+                <input type="text" formControlName="remoteName"
+                    class="border border-solid border-gray-200 focus:border-2 focus:border-blue-500 w-full p-2 rounded-md" />
+            </div>
+            <div class="mb-5">
+                <label class="block text-sm font-medium leading-6 text-gray-900">Remote Endpoint</label>
+                <input type="url" formControlName="remoteEndpoint"
+                    class="border border-solid border-gray-200 focus:border-2 focus:border-blue-500 w-full p-2 rounded-md" />
+            </div>
+            <div class="mb-5">
+                <label class="block text-sm font-medium leading-6 text-gray-900">Component Name</label>
+                <input type="text" formControlName="componentName"
+                    class="border border-solid border-gray-200 focus:border-2 focus:border-blue-500 w-full p-2 rounded-md" />
+            </div>
+            <div class="mb-5">
+                <input type="checkbox" formControlName="requrireAuthentication"
+                    class="border border-solid border-gray-200 focus:border-2 focus:border-blue-500 w-4 h-4 rounded mr-2" />
+                <label class="text-sm font-medium leading-6 text-gray-900">Require Authentication</label>
+            </div>
+            <div class="flex items-center justify-end">
+                <button class="rounded-md bg-indigo-600 py-2 px-3 mr-4">Save</button>
+                <a class="rounded-md bg-gray-300 py-2 px-3 mr-4">Cancel</a>
+            </div>
+        </ng-container>
+    </div>
+</div>

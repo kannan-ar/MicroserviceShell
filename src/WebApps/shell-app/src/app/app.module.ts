@@ -17,7 +17,8 @@ import { reducers, metaReducers } from './store';
 import { PlatformEffects } from './store/platform';
 import { AuthService, ConfigService } from './core/services';
 import { AuthInterceptor } from './core/services/auth.interceptor';
-import { configServiceFactory } from './core/services/config-service.provider';
+import { configServiceFactory } from './core/services/config-service.factory';
+import { ReactiveFormsModule } from '@angular/forms';
 
 @NgModule({
   declarations: [
@@ -33,6 +34,7 @@ import { configServiceFactory } from './core/services/config-service.provider';
     BrowserModule,
     HttpClientModule,
     AppRoutingModule,
+    ReactiveFormsModule,
     StoreModule.forRoot(reducers, {
       metaReducers
     }),

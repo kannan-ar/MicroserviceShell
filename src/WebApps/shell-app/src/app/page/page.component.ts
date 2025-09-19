@@ -11,6 +11,6 @@ export class PageComponent implements OnInit {
   constructor(private componentService: ComponentService) { }
 
   ngOnInit() {
-    this.componentService.getComponents().subscribe(x => console.log(x));
+    //this.componentService.getComponents().subscribe(x => console.log(x));
   }
 }
